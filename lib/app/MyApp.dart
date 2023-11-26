@@ -1,3 +1,4 @@
+import 'package:cridet_hour_system/OnBording/OnBording.dart';
 import 'package:cridet_hour_system/app/cubit/cubit.dart';
 import 'package:cridet_hour_system/app/cubit/state.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,9 @@ class MyApp extends StatelessWidget {
         },
         builder: (context, state) {
           return MaterialApp(
-            //home : name of widget
+            home : OnBording(),
             title: 'Cridet Hour Sytem',
             debugShowCheckedModeBanner: false,
-
           );
         },
       ),
