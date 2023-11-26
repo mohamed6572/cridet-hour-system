@@ -22,4 +22,5 @@ static  void navigateToAndFinish(context, widget) => Navigator.pushAndRemoveUnti
     SystemChannels.platform.invokeMethod('SystemNavigator.pop');
   }
 
+
 }

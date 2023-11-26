@@ -3,6 +3,8 @@ import 'package:cridet_hour_system/app/cubit/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../pressentaion/resources/theme_manager.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
             //home : name of widget
             title: 'Cridet Hour Sytem',
             debugShowCheckedModeBanner: false,
+            theme: LightTheme(),
 
           );
         },
