@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-class Login extends StatelessWidget {
-  const Login({super.key});
-
+class Login_screen extends StatelessWidget {
+static const String routeName='Login_screen';
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold();
   }
-}
+  }
