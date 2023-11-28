@@ -37,7 +37,7 @@ TextStyle getSemiBoldStyle(
 }
 TextStyle getMore_botton_textStyle(
 
-)=>  TextStyle(color: ColorManager.darkGrey, fontWeight: FontWightManager.medium,   decoration: TextDecoration.underline,
+)=>  TextStyle(color: ColorManager.darkGrey, fontWeight: FontWightManager.medium,decoration: TextDecoration.underline,
   fontSize: FontSize.s14);
 TextStyle More_botton_link_textStyle(
 )=>  TextStyle(color: ColorManager.primary, fontWeight: FontWightManager.medium,   decoration: TextDecoration.underline,
