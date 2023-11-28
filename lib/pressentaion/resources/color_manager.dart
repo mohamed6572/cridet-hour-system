@@ -19,5 +19,6 @@ class ColorManager {
   static Color get  border =>  const Color(0x802E2E2E);
   static Color get  dark => const Color(0xff232F3E);
   static Color get  blueDark => const Color(0xff61D4FF);
+  static Color get  white2 => const Color(0xfff2f2f3);
 
 }
