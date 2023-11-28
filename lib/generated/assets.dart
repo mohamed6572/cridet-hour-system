@@ -3,6 +3,6 @@ class Assets {
   Assets._();
 
   static const String iconsLogo = 'assets/icons/logo.png';
-  static const String imagesLogo = 'assets/images/logo.png';
+  static const String Logo = 'assets/images/logo.png';
 
 }
