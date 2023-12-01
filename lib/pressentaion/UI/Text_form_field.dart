@@ -23,7 +23,7 @@ class textFormField extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding:EdgeInsets.all(10.0),
+          padding:EdgeInsets.all(15),
           child: TextFormField(
             decoration: InputDecoration(
                 enabledBorder:
