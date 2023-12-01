@@ -1,5 +1,6 @@
 import 'package:cridet_hour_system/pressentaion/UI/Text_form_field.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
+import 'package:cridet_hour_system/pressentaion/resources/font_manager.dart';
 import 'package:flutter/material.dart';
 
 class Login_screen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _Login_screenState extends State<Login_screen> {
       backgroundColor: ColorManager.white2,
       body: Center(
         child: SingleChildScrollView(
-          child:Column(
+          child: Column(
             children: [
               SizedBox(
                 height: 30,
@@ -43,12 +44,16 @@ class _Login_screenState extends State<Login_screen> {
                 width: 420,
                 height: 450,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Padding(
-                      padding:EdgeInsets.all(8.0),
-                      child: Text(
-                        'Login',
-                        style: Theme.of(context).textTheme.headlineSmall,
+                      padding: EdgeInsets.all(15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Login',
+                              style: Theme.of(context).textTheme.bodyLarge),
+                        ],
                       ),
                     ),
                     Form(
@@ -73,20 +78,67 @@ class _Login_screenState extends State<Login_screen> {
                             },
                           ),
                           textFormField(
-                              hintText:'Password',
-                              validator: (text) {
-                                if (text == null || text.trim().isEmpty) {
-                                  return 'please Enter Password';
+                            hintText: 'Password',
+                            validator: (text) {
+                              if (text == null || text.trim().isEmpty) {
+                                return 'please Enter Password';
+                              }
+                              if (text.length < 6) {
+                                return 'password should be at least 6 character';
+                              }
+                              return null;
+                            },
+                            controller: passwordController,
+                            keyboardType: TextInputType.visiblePassword,
+                            isObscure: isObscure,
+                            suffixIcon: InkWell(
+                              child: isObscure
+                                  ? Icon(Icons.visibility_off)
+                                  : Icon(Icons.visibility),
+                              onTap: () {
+                                if (isObscure) {
+                                  isObscure = false;
+                                } else {
+                                  isObscure = true;
                                 }
-                                if (text.length < 6) {
-                                  return 'password should be at least 6 character';
-                                }
-                                return null;
+                                setState(() {});
                               },
-                              controller:passwordController)
+                            ),
+                          )
                         ],
                       ),
                     ),
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Text(
+                        'Forget password?',
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                      child: TextButton(
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {}
+                          },
+                          child: Text(
+                            'Login',
+                            style: Theme.of(context).textTheme.bodySmall,
+                          )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Don't have account?",
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Text('Register now!',
+                              style: Theme.of(context).textTheme.displayMedium)
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
