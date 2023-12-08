@@ -86,7 +86,7 @@ titleLarge: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s16),
       contentPadding: const EdgeInsets.all(AppPadding.p8),
       //hint style
       hintStyle:
-      getRegularStyle(color: ColorManager.grey, fontSize: FontSize.s14),
+      getRegularStyle(color: ColorManager.black, fontSize: FontSize.s14),
       //label style
       labelStyle:
       getRegularStyle(color: ColorManager.grey, fontSize: FontSize.s14),
