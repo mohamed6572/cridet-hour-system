@@ -3,12 +3,12 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  cloud_firestore
+  desktop_window
   file_selector_windows
-  firebase_auth
-  firebase_core
   permission_handler_windows
+  share_plus
   url_launcher_windows
+  window_size
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

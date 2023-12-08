@@ -9,6 +9,13 @@ class Lists_Manager {
 
 
 
+  static List<String> YearText=[
+    'الفرقة الاولى',
+    'الفرقة الثانية',
+    'الفرقة الثالثة',
+    'الفرقة الرابعة',
+  ];
+
 
 
 

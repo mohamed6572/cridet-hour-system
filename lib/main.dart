@@ -1,12 +1,25 @@
 
+import 'package:bloc/bloc.dart';
+import 'package:cridet_hour_system/pressentaion/resources/Bloc_Observer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:flutter/widgets.dart';
-import 'package:flutter/services.dart';
 import 'app/MyApp.dart';
 import 'dart:io';
+import 'package:window_size/window_size.dart';
+
 void main() {
-  runApp( MyApp());
+
+  BlocOverrides.runZoned(
+        () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+        setWindowTitle('Credit Hour System');
+        setWindowMinSize(const Size(1834.0, 720));
+
+      }
+      runApp(MyApp());
+    },
+    blocObserver: MyBlocObserver(),
+  );
 
 }
 

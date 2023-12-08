@@ -1,3 +1,4 @@
+
 import 'package:cridet_hour_system/pressentaion/resources/styles_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/values_manager.dart';
 import 'package:flutter/material.dart';
@@ -15,17 +16,19 @@ ThemeData LightTheme() {
       checkColor: MaterialStateProperty.all(ColorManager.white),
       fillColor: MaterialStateProperty.all(ColorManager.primary),
 
+
     ),
+
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: ColorManager.primary,
 
-          elevation: 0.0,
+      elevation: 0.0,
 
       selectedIconTheme: IconThemeData(
         color: ColorManager.white,
       ),
       unselectedIconTheme: IconThemeData(
-        color: ColorManager.disable
+          color: ColorManager.disable
       ),
       selectedItemColor: ColorManager.white,
       unselectedItemColor: ColorManager.disable,
@@ -36,28 +39,31 @@ ThemeData LightTheme() {
       backgroundColor: ColorManager.primary,
       centerTitle: true,
       elevation: 0,
+
+
       actionsIconTheme: IconThemeData(color: ColorManager.white),
     ),
     dividerColor: ColorManager.black,
     primaryColor: ColorManager.primary,
     textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        elevation: MaterialStateProperty.all(1.0),
-        backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-        shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0), // Adjust the radius as needed
+        style: ButtonStyle(
+
+            elevation: MaterialStateProperty.all(1.0),
+            backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+            shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0), // Adjust the radius as needed
+                )
             )
+
         )
-        
-      )
     ),
 
     buttonTheme: ButtonThemeData(
-      buttonColor: ColorManager.primary,
+        buttonColor: ColorManager.primary,
         shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0), // Adjust the radius as needed
-            )
+          borderRadius: BorderRadius.circular(12.0), // Adjust the radius as needed
+        )
     ),
     iconButtonTheme: IconButtonThemeData(
         style: ButtonStyle(iconColor: MaterialStateProperty.all(ColorManager.white),
@@ -72,9 +78,9 @@ ThemeData LightTheme() {
         )
     ),
     textTheme: TextTheme(
-titleSmall: getRegularStyle(color: ColorManager.black,fontSize: FontSize.s12),
-titleMedium: getMediumStyle(color: ColorManager.black,fontSize: FontSize.s14),
-titleLarge: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s16),
+      titleSmall: getRegularStyle(color: ColorManager.black,fontSize: FontSize.s12),
+      titleMedium: getMediumStyle(color: ColorManager.black,fontSize: FontSize.s14),
+      titleLarge: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s16),
       displaySmall: getRegularStyle(color: ColorManager.black,fontSize: FontSize.s14),
       displayMedium: getMediumStyle(color: ColorManager.black,fontSize: FontSize.s18),
       displayLarge: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s20),
@@ -83,6 +89,7 @@ titleLarge: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s16),
       bodyLarge: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s25),
     ),
     inputDecorationTheme: InputDecorationTheme(
+
       contentPadding: const EdgeInsets.all(AppPadding.p8),
       //hint style
       hintStyle:

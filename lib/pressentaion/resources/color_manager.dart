@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 class ColorManager {
   //light
   static Color get  primary =>   const Color(0xff132157);
-  static Color get  backGround =>   const Color(0xffF4F4F4);
-  static Color get  secondry => const Color(0xb20f1952);
-  static Color get  darkGrey =>  const Color(0xff6B7280);
+  static Color get  backGround =>   const Color(0xffe5e5e5);
+  static Color get  secondry => const Color(0x6e0f1952);
+  static Color get  darkGrey =>  const Color(0xff6B7280AE);
   static Color get  black =>  const Color(0xff000000);
   static Color get  lightgrey =>  const Color(0xffEEEEEE);
   static Color get  disable =>   const Color(0xffa1a5ad);
@@ -13,11 +13,13 @@ class ColorManager {
   static Color get  white =>const Color(0xffFFFFFF);
   static Color get  error =>  const Color(0xffDD3131);
   static Color get  grey1 => const Color(0xff707070);
+  static Color get  green => const Color(0xff0cc200);
   static Color get  grey2 =>  const Color(0xff797979);
   static Color get  grey3 =>  const Color(0xffF3F4F6);
   static Color get  grey =>  const Color(0xff737477);
   static Color get  border =>  const Color(0x802E2E2E);
   static Color get  dark => const Color(0xff232F3E);
   static Color get  blueDark => const Color(0xff61D4FF);
+  static Color get  boxShadowColor =>  Colors.black38;
 
 }

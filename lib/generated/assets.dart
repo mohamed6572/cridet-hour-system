@@ -2,7 +2,11 @@
 class Assets {
   Assets._();
 
+  static const String assetsB = 'assets/B.csv';
+  static const String assetsBB = 'assets/BB.csv';
+  static const String assetsImagesMe = 'assets/images/me.jpg';
   static const String iconsLogo = 'assets/icons/logo.png';
-  static const String Logo = 'assets/images/logo.png';
+  static const String imagesLogo = 'assets/images/logo.png';
+  static const String imagesMe = 'assets/images/me.jpg';
 
 }
