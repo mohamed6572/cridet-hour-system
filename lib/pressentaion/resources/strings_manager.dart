@@ -2,5 +2,51 @@ class AppStrings{
 
   static const addLink = "اضف اللينك";
 
+  static const  signUp ='Sign Up';
+  static const  signUp_FullName="Full Name";
+  static const  signUp_SchoolYear='School year';
+  static const  signUp_DivisionInstitute='Division in institute';
+  static const  signUp_Enrollmentstatus='Enrollment status';
+  static const  signUp_Candidate='Candidate';
+  static const  signUp_Adapter='Adapter';
+  static const  signUp_Band='The band';
+  static const  signUp_Basicstudentdata='Basic student data';
+  static const  signUp_EducationalQualification='Educational Qualification';
+  static const  signUp_Division='The division';
+  static const  signUp_ReceivedData='Received date';
+  static const  signUp_SchoolName='School name';
+  static const  signUp_SittingNumber='Sitting number';
+  static const  signUp_Total='The total';
+  static const  signUp_IDcardNumber='ID card number';
+  static const  signUp_ThecardIssuingParty='The card issuing party';
+  static const  signUp_PartyTransferred='The party from which it is transferred';
+  static const  signUp_ApprovalDate='Approval date';
+  static const  signUp_TransferType='Transfer type';
+  static const  signUp_Transferstatus='Transfer status';
+  static const  signUp_Orderstatus='Order status';
+  static const  signUp_Observance='Observance';
+  static const  signUp_DateOfBirth='Date of birth';
+  static const  signUp_PlaceOfBirth='Place of birth';
+  static const  signUp_TripleNumberRecruitment='The triple number for recruitment';
+  static const  signUp_Recruitmentarea='Recruitment area';
+  static const  signUp_NameOfStudentGuardian="Name of the student's guardian";
+  static const  signUp_JobOfStudentGuardian="The job of the student's guardian";
+  static const  signUp_Studentaddress='Student address';
+  static const  signUp_Guardianphone='Guardian phone';
+  static const  signUp_Studentphone='Student phone';
+  static const  signUp_Donein='Done in';
+  static const  signUp_Nominationcard='Nomination card';
+  static const  signUp_Photograph='Photograph';
+  static const  signUp_OriginalBirthcertificate='Original birth certificate';
+  static const  signUp_PhotoIDNumber='Photo ID number';
+  static const  signUp_2soldiers='2 soldiers';
+  static const  signUp_6soldiers='6 soldiers if it comes out';
+  static const  signUp_Registration='Registration';
+  static const  signUp_EmailAddress='Email Address';
+  static const  signUp_Password='Password';
+  static const  signUp_Gender='Gender';
+  static const  signUp_Female='Female';
+  static const  signUp_Male='Male';
+  static const validate_message_signUp = 'This is required';
 
 }
