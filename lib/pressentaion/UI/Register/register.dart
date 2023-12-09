@@ -60,8 +60,9 @@ class _RegisterState extends State<Register> {
     String ChangeValue = valueEnrollmentStatus[0];
     String ChangeGender = valueGender[0];
     return Scaffold(
+      appBar: AppBar(),
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.backGround,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -77,19 +78,20 @@ class _RegisterState extends State<Register> {
                 ),
                 Spacer(),
                 Container(
-                  height: MediaQuery.of(context).size.height *0.70,
+                  height: MediaQuery.of(context).size.height *0.62,
                   // height: MediaQuery.of(context).size.height /1.5,
                   padding: EdgeInsets.all(20),
-                  decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade400, // Color of the shadow
-                        offset: Offset(0, 2), // Offset of the shadow
-                        blurRadius: 4, // Spread of the shadow
-                        spreadRadius: 0, // Extent of the shadow
-                      ),
-                    ],),
+
+
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: ColorManager.white,
+                boxShadow: [
+                  BoxShadow(
+                      offset: Offset(0, 1),
+                      blurRadius: 7,
+                      color: ColorManager.grey)
+                ]),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
@@ -107,6 +109,7 @@ class _RegisterState extends State<Register> {
                         ),
                         SizedBox(height: 35,),
                         TextField(
+
                             text: AppStrings.signUp_FullName,
                             controller: controlr_FullName,
                             validator: (text) {
