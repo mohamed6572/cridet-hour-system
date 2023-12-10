@@ -23,7 +23,7 @@ class _Login_screenState extends State<Login_screen> {
           child: Column(
             children: [
               SizedBox(
-                height: 30,
+                height:30,
               ),
               Image.asset(
                 'assets/images/logo.png',
@@ -37,7 +37,7 @@ class _Login_screenState extends State<Login_screen> {
                     color: ColorManager.white,
                     boxShadow: [
                       BoxShadow(
-                          offset: Offset(0, 1),
+                          offset: Offset(0,1),
                           blurRadius: 7,
                           color: ColorManager.grey)
                     ]),

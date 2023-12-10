@@ -17,7 +17,6 @@ class textFormField extends StatelessWidget {
       required this.validator,
       required this.controller,
       this.keyboardType = TextInputType.text});
-
   @override
   Widget build(BuildContext context) {
     return Column(

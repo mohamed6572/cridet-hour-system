@@ -8,7 +8,7 @@ import 'font_manager.dart';
 
 ThemeData LightTheme() {
   return ThemeData(
-    scaffoldBackgroundColor: ColorManager.backGround,
+    scaffoldBackgroundColor: ColorManager.white2,
     indicatorColor: ColorManager.primary,
     splashColor: Colors.transparent,
     checkboxTheme: CheckboxThemeData(
@@ -33,9 +33,10 @@ ThemeData LightTheme() {
 
     ),
     appBarTheme: AppBarTheme(
+      // systemOverlayStyle:SystemUiOverlayStyle(statusBarColor:Colors.transparent),
       backgroundColor: ColorManager.primary,
       shape:RoundedRectangleBorder(borderRadius:BorderRadius.vertical(bottom:Radius.circular(25))),
-      // actionsIconTheme:IconThemeData(color: ColorManager.white),
+      actionsIconTheme:IconThemeData(color: ColorManager.white),
     ),
     dividerColor: ColorManager.black,
     primaryColor: ColorManager.primary,
@@ -69,7 +70,7 @@ ThemeData LightTheme() {
             )
 
         )
-    ),
+    ),iconTheme:IconThemeData(color:ColorManager.blueIcon,size:40),
     textTheme: TextTheme(
 titleSmall: getRegularStyle(color: ColorManager.black,fontSize: FontSize.s12),
 titleMedium: getMediumStyle(color: ColorManager.black,fontSize: FontSize.s14),

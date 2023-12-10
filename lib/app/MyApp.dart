@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             //
-            home : HomeScreen(),
+            home :HomeScreen(),
             title: 'Cridet Hour Sytem',
             debugShowCheckedModeBanner: false,
             theme: LightTheme(),
