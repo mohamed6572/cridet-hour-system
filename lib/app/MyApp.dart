@@ -6,6 +6,7 @@ import 'package:cridet_hour_system/pressentaion/UI/splash_screen/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../pressentaion/UI/Home/home_screen.dart';
 import '../pressentaion/resources/theme_manager.dart';
 
 class MyApp extends StatelessWidget {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             //
-            home : Splash_Screen(),
+            home :HomeScreen(),
             title: 'Cridet Hour Sytem',
             debugShowCheckedModeBanner: false,
             theme: LightTheme(),

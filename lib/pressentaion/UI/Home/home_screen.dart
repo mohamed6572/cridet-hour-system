@@ -1,6 +1,9 @@
 import 'package:cridet_hour_system/generated/assets.dart';
 import 'package:cridet_hour_system/pressentaion/UI/Home/component/container.dart';
+import 'package:cridet_hour_system/pressentaion/UI/Home/student_data.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
+import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
+import 'package:cridet_hour_system/pressentaion/resources/custom_widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,41 +35,46 @@ class HomeScreen extends StatelessWidget {
               height: 30,
             ),
             Center(
-              child: Container(
-                margin: EdgeInsets.all(22),
-                padding: EdgeInsets.all(22),
-                width: MediaQuery.of(context).size.width * 3.0,
-                height: MediaQuery.of(context).size.height * 0.18,
-                decoration: BoxDecoration(
-                    color: ColorManager.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                          offset: Offset(0,4),
-                          blurRadius: 2,
-                          spreadRadius: 1,
-                          color: ColorManager.boxShadowColor)
-                    ]),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: AssetImage(Assets.nada),
-                      maxRadius: 50,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(5),
-                      child: Center(
-                        child: Text("nada jamal\nLevel Four",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium),
+              child: InkWell(
+                onTap: (){
+                  AppConstants.navigateTo(context, Student_PersonalData());
+                },
+                child: Container(
+                  margin: EdgeInsets.all(22),
+                  padding: EdgeInsets.all(22),
+                  width: MediaQuery.of(context).size.width * 3.0,
+                  height: MediaQuery.of(context).size.height * 0.18,
+                  decoration: BoxDecoration(
+                      color: ColorManager.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(0,4),
+                            blurRadius: 2,
+                            spreadRadius: 1,
+                            color: ColorManager.boxShadowColor)
+                      ]),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: AssetImage(Assets.nada),
+                        maxRadius: 50,
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Center(
+                          child: Text("nada jamal\nLevel Four",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -78,7 +86,12 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+
                         icon: Icon(Icons.padding),
+                        onTap: (){
+                          AppConstants.navigateTo(context, Student_PersonalData());
+
+                        },
                         text: ("Personal\nData"),
                       ),
                     ],
@@ -86,6 +99,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.backup_table_outlined),
                         text: ("Schedule"),
 
@@ -103,6 +119,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.video_collection),
                         text: ("Section\nLink"),
                       ),
@@ -111,6 +130,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         text: ("Lectures\nLink"),
                         icon: Icon(Icons.video_collection),
                       ),
@@ -127,6 +149,26 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+                       showDialog(context: context, builder:(context) => Dialog(
+                         child:Padding(
+                           padding: const EdgeInsets.all(20.0),
+                           child: Container(
+                             height: mediaquery(context).height/3,
+
+                             child: SingleChildScrollView(
+                               child:Column(
+                                 children: [
+                                   Icon(Icons.warning_amber,color: ColorManager.error,),
+                                   SizedBox(height: 20,),
+                                   Text("hello please go to check your properties",textAlign: TextAlign.center,),
+                                 ],
+                               ),
+                             ),
+                           ),
+                         ) ,
+                       ),);
+                        },
                         text: ("Warnings"),
                         icon: Icon(Icons.dnd_forwardslash_outlined),
                       ),
@@ -135,6 +177,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.group_sharp),
                         text: ("Military\n Education"),
                       ),
@@ -151,6 +196,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.padding),
                         text: ("Gpa"),
                       ),
@@ -159,6 +207,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.check_box),
                         text: ("Attendance\nTracking"),
                       ),
@@ -175,6 +226,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.padding),
                         text: ("courses"),
                       ),
@@ -183,6 +237,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.padding),
                         text: ("Previous\nExaminations"),
                       ),
@@ -199,6 +256,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.padding),
                         text: ("Midterm\nExaminations"),
                       ),
@@ -207,6 +267,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.padding),
                         text: ("Vacant\nPositions"),
                       ),
@@ -223,6 +286,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.auto_stories_sharp),
                         text: ("Book\nList"),
                       ),
@@ -231,6 +297,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.mail),
                         text: ("Institute\nMail"),
                       ),
@@ -247,6 +316,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.padding),
                         text: ("------"),
                       ),
@@ -255,6 +327,9 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
+                        onTap: (){
+
+                        },
                         icon: Icon(Icons.padding),
                         text: ("-----"),
                       ),

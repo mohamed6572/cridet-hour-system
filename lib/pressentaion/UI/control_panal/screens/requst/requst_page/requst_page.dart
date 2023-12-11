@@ -152,6 +152,7 @@ class _RequstPageState extends State<RequstPage> {
                       ),
                     )),
 
+
                 Visibility(
                     visible: !AppConstants.controlPanal_photoOrdata,
                     child: Expanded(
@@ -473,7 +474,7 @@ class _RequstPageState extends State<RequstPage> {
         ],
       ),
         h: 50.0,
-        w: w ,
+w:w,
         ph: 20.0,
         pv: 10.0,
         mh: 10.0,
