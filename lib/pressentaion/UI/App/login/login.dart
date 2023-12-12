@@ -1,10 +1,10 @@
-import 'package:cridet_hour_system/pressentaion/UI/Register/register.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/font_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../../resources/custom_widgets/custom_widget.dart';
+import '../../../resources/custom_widgets/custom_widget.dart';
+import '../Register/register.dart';
 import 'Text_form_field.dart';
 
 class Login_screen extends StatefulWidget {

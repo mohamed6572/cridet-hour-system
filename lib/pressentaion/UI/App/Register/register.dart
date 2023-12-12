@@ -1,9 +1,11 @@
-import 'package:cridet_hour_system/pressentaion/UI/OnBording/OnBording.dart';
-import 'package:cridet_hour_system/pressentaion/UI/Register/register_container.dart';
+
+import 'package:cridet_hour_system/pressentaion/UI/App/Register/register_container.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
+
+import '../OnBording/OnBording.dart';
 
 class Register extends StatefulWidget {
   @override

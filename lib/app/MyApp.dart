@@ -1,12 +1,10 @@
 import 'package:cridet_hour_system/app/cubit/cubit.dart';
 import 'package:cridet_hour_system/app/cubit/state.dart';
 import 'package:cridet_hour_system/pressentaion/UI/control_panal/control_panal.dart';
-import 'package:cridet_hour_system/pressentaion/UI/login/login.dart';
-import 'package:cridet_hour_system/pressentaion/UI/splash_screen/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../pressentaion/UI/Home/home_screen.dart';
+import '../pressentaion/UI/App/Home/home_screen.dart';
 import '../pressentaion/resources/theme_manager.dart';
 
 class MyApp extends StatelessWidget {

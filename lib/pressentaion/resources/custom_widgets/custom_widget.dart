@@ -109,3 +109,13 @@ Widget defult_button ({required  text,required  context,required  color,required
       backgroundColor: MaterialStateProperty.all(color)
   ),
   child:Text('$text',style: Theme.of(context).textTheme.bodySmall!.copyWith(color: tcolor),), );
+
+AppBar app_AppBar(context)=>  AppBar(
+
+  centerTitle: true,
+  title: Text("HIMIT",
+      style: Theme.of(context)
+          .textTheme
+          .bodyLarge!
+          .copyWith(color: ColorManager.white)),
+);

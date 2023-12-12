@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:cridet_hour_system/pressentaion/UI/login/login.dart';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../control_panal/control_panal.dart';
+import '../../control_panal/control_panal.dart';
+import '../login/login.dart';
+
 
 class Splash_Screen extends StatefulWidget {
   @override

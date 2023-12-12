@@ -1,9 +1,8 @@
 import 'package:cridet_hour_system/pressentaion/resources/Lists_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../../resources/color_manager.dart';
-import '../../resources/values_manager.dart';
-
+import '../../../resources/color_manager.dart';
+import '../../../resources/values_manager.dart';
 
 class OnBording extends StatefulWidget {
   @override

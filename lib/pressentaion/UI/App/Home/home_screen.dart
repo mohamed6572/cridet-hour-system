@@ -1,32 +1,148 @@
 import 'package:cridet_hour_system/generated/assets.dart';
-import 'package:cridet_hour_system/pressentaion/UI/Home/component/container.dart';
-import 'package:cridet_hour_system/pressentaion/UI/Home/student_data.dart';
+import 'package:cridet_hour_system/pressentaion/UI/App/Home/student_data.dart';
+import 'package:cridet_hour_system/pressentaion/UI/App/courses/courses_screen.dart';
+import 'package:cridet_hour_system/pressentaion/UI/App/schedule/schedule_screen.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/custom_widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../bookscreen/bookscreen.dart';
+import '../importantNews/importantNews.dart';
+import 'component/container.dart';
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // leading: Padding(
-        //   padding: EdgeInsets.only(bottom:10,left:10),
-        //   // child: ClipRRect(
-        //   //     borderRadius: BorderRadius.circular(20),
-        //   //     child: Image.asset(
-        //   //       Assets.iconsLogoWhite,
-        //   //       color: Colors.white,
-        //   //     )),
-        // ),
-        // leading:Center(child: CircleAvatar(child:Image.asset(Assets.Logo))),
-        centerTitle: true,
-        title: Text("HIMIT",
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(color: ColorManager.white)),
+      appBar:app_AppBar(context),
+      drawer: Drawer(
+        backgroundColor: ColorManager.primary,
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "HIMIT",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(color: ColorManager.white),
+                  ),
+                  SizedBox(
+                    height:MediaQuery.of(context).size.height*0.1,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: InkWell(
+                      onTap:(){},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "مصر،كفرالشيخ",
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(
+                            Icons.location_on_outlined,
+                            color: ColorManager.white,
+                            size: 25,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: InkWell(
+                      onTap:(){},
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "01099340772",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(
+                            Icons.call,
+                            color: Colors.white,
+                            size: 25,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: InkWell(
+                      onTap:(){},
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "nadajamal@gmail.com",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(
+                            Icons.mail,
+                            color: Colors.white,
+                            size: 25,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height:200,),
+                  Padding(
+                    padding:EdgeInsets.all(12),
+                    child: InkWell(
+                      onTap:(){},
+                      child:Row(
+                        mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.facebook_rounded,
+                            color: Colors.white,
+                          ),
+                          Icon(
+                            Icons.smart_display_rounded,
+                            color: ColorManager.error,
+                            size: 25,
+                          ),
+                          Icon(
+                            Icons.chat,
+                            color: ColorManager.white,
+                            size: 25,
+                          ),
+                          Icon(
+                            Icons.web,
+                            color: ColorManager.white,
+                            size: 25,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -96,6 +212,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       container(
                         onTap: (){
+                          AppConstants.navigateTo(context, ScheduleScreen());
 
                         },
                         icon: Icon(Icons.table_chart_outlined),
@@ -149,7 +266,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       container(
                         onTap: (){
-
+                          AppConstants.navigateTo(context, CoursesScreen());
                         },
                         icon: Icon(Icons.video_collection_outlined),
                         text: ("courses"),
@@ -160,6 +277,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       container(
                         onTap: (){
+
 
                         },
                         icon: Icon(Icons.access_time_outlined),
@@ -181,6 +299,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       container(
                         onTap: (){
+                          AppConstants.navigateTo(context, BookScreen());
 
                         },
                         icon: Icon(Icons.auto_stories_sharp),
@@ -213,10 +332,11 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       container(
                         onTap: (){
+                          AppConstants.navigateTo(context, ImportantNews_Screenn());
 
                         },
                         icon: Icon(Icons.home_repair_service_sharp),
-                        text: ("Vacant\nPositions"),
+                        text: ("Important\nNews"),
                       ),
                     ],
                   )

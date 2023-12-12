@@ -1,10 +1,11 @@
-import 'package:cridet_hour_system/pressentaion/UI/Home/container_person_data.dart';
 import 'package:cridet_hour_system/pressentaion/resources/custom_widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
-import '../../../generated/assets.dart';
-import '../../resources/color_manager.dart';
+import '../../../../generated/assets.dart';
+import '../../../resources/color_manager.dart';
+import 'container_person_data.dart';
+
 
 class Student_PersonalData extends StatefulWidget {
   const Student_PersonalData({super.key});
@@ -17,14 +18,7 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("HIMIT",
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(color: ColorManager.white)),
-      ),
+      appBar: app_AppBar(context),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(20),
