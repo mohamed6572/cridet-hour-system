@@ -18,6 +18,11 @@ ThemeData LightTheme() {
 
 
     ),
+    iconTheme: IconThemeData(
+      color: ColorManager.primary,
+      size: 35
+
+    ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: ColorManager.primary,
@@ -80,7 +85,7 @@ ThemeData LightTheme() {
     textTheme: TextTheme(
       titleSmall: getRegularStyle(color: ColorManager.black,fontSize: FontSize.s12),
       titleMedium: getMediumStyle(color: ColorManager.black,fontSize: FontSize.s14),
-      titleLarge: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s16),
+      titleLarge: getBoldStyle(color: ColorManager.white,fontSize: FontSize.s16),
       displaySmall: getRegularStyle(color: ColorManager.black,fontSize: FontSize.s14),
       displayMedium: getMediumStyle(color: ColorManager.black,fontSize: FontSize.s18),
       displayLarge: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s20),

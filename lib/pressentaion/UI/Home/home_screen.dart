@@ -65,14 +65,22 @@ class HomeScreen extends StatelessWidget {
                         width: 10,
                       ),
                       Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Center(
-                          child: Text("nada jamal\nLevel Four",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium),
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: Text("nada jamal",
+                                  style: Theme.of(context).textTheme.bodyMedium),
+                            ),
+                            Center(
+                              child: Text("Level Four",
+                                  style: Theme.of(context).textTheme.bodySmall),
+                            ),
+                          ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -83,153 +91,67 @@ class HomeScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    children: [
-                      container(
 
-                        icon: Icon(Icons.padding),
-                        onTap: (){
-                          AppConstants.navigateTo(context, Student_PersonalData());
-
-                        },
-                        text: ("Personal\nData"),
-                      ),
-                    ],
-                  ),
                   Column(
                     children: [
                       container(
                         onTap: (){
 
                         },
-                        icon: Icon(Icons.backup_table_outlined),
+                        icon: Icon(Icons.table_chart_outlined),
                         text: ("Schedule"),
 
                       ),
                     ],
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.video_collection),
-                        text: ("Section\nLink"),
-                      ),
-                    ],
                   ),
                   Column(
                     children: [
                       container(
                         onTap: (){
+                          showDialog(context: context, builder:(context) => Dialog(
+                            child:Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Container(
+                                height: mediaquery(context).height/3,
 
-                        },
-                        text: ("Lectures\nLink"),
-                        icon: Icon(Icons.video_collection),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-                       showDialog(context: context, builder:(context) => Dialog(
-                         child:Padding(
-                           padding: const EdgeInsets.all(20.0),
-                           child: Container(
-                             height: mediaquery(context).height/3,
-
-                             child: SingleChildScrollView(
-                               child:Column(
-                                 children: [
-                                   Icon(Icons.warning_amber,color: ColorManager.error,),
-                                   SizedBox(height: 20,),
-                                   Text("hello please go to check your properties",textAlign: TextAlign.center,),
-                                 ],
-                               ),
-                             ),
-                           ),
-                         ) ,
-                       ),);
+                                child: SingleChildScrollView(
+                                  child:Column(
+                                    children: [
+                                      Icon(Icons.warning_amber,color: ColorManager.error,),
+                                      SizedBox(height: 20,),
+                                      Text("hello please go to check your properties",textAlign: TextAlign.center,),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ) ,
+                          ),);
                         },
                         text: ("Warnings"),
-                        icon: Icon(Icons.dnd_forwardslash_outlined),
+                        icon: Icon(Icons.warning_amber),
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.group_sharp),
-                        text: ("Military\n Education"),
-                      ),
-                    ],
-                  )
                 ],
               ),
             ),
+
+
+
             Padding(
               padding: EdgeInsets.all(20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+
+
                   Column(
                     children: [
                       container(
                         onTap: (){
 
                         },
-                        icon: Icon(Icons.padding),
-                        text: ("Gpa"),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.check_box),
-                        text: ("Attendance\nTracking"),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.padding),
+                        icon: Icon(Icons.video_collection_outlined),
                         text: ("courses"),
                       ),
                     ],
@@ -240,41 +162,11 @@ class HomeScreen extends StatelessWidget {
                         onTap: (){
 
                         },
-                        icon: Icon(Icons.padding),
+                        icon: Icon(Icons.access_time_outlined),
                         text: ("Previous\nExaminations"),
                       ),
                     ],
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.padding),
-                        text: ("Midterm\nExaminations"),
-                      ),
-                    ],
                   ),
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.padding),
-                        text: ("Vacant\nPositions"),
-                      ),
-                    ],
-                  )
                 ],
               ),
             ),
@@ -283,6 +175,8 @@ class HomeScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+
+
                   Column(
                     children: [
                       container(
@@ -300,14 +194,36 @@ class HomeScreen extends StatelessWidget {
                         onTap: (){
 
                         },
-                        icon: Icon(Icons.mail),
-                        text: ("Institute\nMail"),
+                        icon: Icon(Icons.note_alt_outlined),
+                        text: ("Midterm\nExaminations"),
+                      ),
+                    ],
+                  ),
+
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+
+                  Column(
+                    children: [
+                      container(
+                        onTap: (){
+
+                        },
+                        icon: Icon(Icons.home_repair_service_sharp),
+                        text: ("Vacant\nPositions"),
                       ),
                     ],
                   )
                 ],
               ),
             ),
+
             Padding(
               padding: EdgeInsets.all(20),
               child: Row(
