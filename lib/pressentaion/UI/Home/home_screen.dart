@@ -28,6 +28,134 @@ class HomeScreen extends StatelessWidget {
                 .bodyLarge!
                 .copyWith(color: ColorManager.white)),
       ),
+      drawer: Drawer(
+        backgroundColor: ColorManager.primary,
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "HIMIT",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(color: ColorManager.white),
+                  ),
+                  SizedBox(
+                 height:MediaQuery.of(context).size.height*0.1,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: InkWell(
+                      onTap:(){},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "مصر،كفرالشيخ",
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(
+                            Icons.location_on_outlined,
+                            color: ColorManager.white,
+                            size: 25,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: InkWell(
+                      onTap:(){},
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "01099340772",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(
+                            Icons.call,
+                            color: Colors.white,
+                            size: 25,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: InkWell(
+                      onTap:(){},
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "nadajamal@gmail.com",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(
+                            Icons.mail,
+                            color: Colors.white,
+                            size: 25,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height:200,),
+                  Padding(
+                    padding:EdgeInsets.all(12),
+                    child: InkWell(
+                      onTap:(){},
+                      child:Row(
+                        mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.facebook_rounded,
+                            color: Colors.white,
+                          ),
+                          Icon(
+                            Icons.smart_display_rounded,
+                            color: ColorManager.error,
+                            size: 25,
+                          ),
+                          Icon(
+                            Icons.chat,
+                            color: ColorManager.white,
+                            size: 25,
+                          ),
+                          Icon(
+                            Icons.web,
+                            color: ColorManager.white,
+                            size: 25,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -36,7 +164,7 @@ class HomeScreen extends StatelessWidget {
             ),
             Center(
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   AppConstants.navigateTo(context, Student_PersonalData());
                 },
                 child: Container(
@@ -49,7 +177,7 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                            offset: Offset(0,4),
+                            offset: Offset(0, 4),
                             blurRadius: 2,
                             spreadRadius: 1,
                             color: ColorManager.boxShadowColor)
@@ -65,14 +193,23 @@ class HomeScreen extends StatelessWidget {
                         width: 10,
                       ),
                       Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Center(
-                          child: Text("nada jamal\nLevel Four",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium),
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: Text("nada jamal",
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
+                            ),
+                            Center(
+                              child: Text("Level Four",
+                                  style: Theme.of(context).textTheme.bodySmall),
+                            ),
+                          ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -86,105 +223,50 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
-
-                        icon: Icon(Icons.padding),
-                        onTap: (){
-                          AppConstants.navigateTo(context, Student_PersonalData());
-
-                        },
-                        text: ("Personal\nData"),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.backup_table_outlined),
+                        onTap: () {},
+                        icon: Icon(Icons.table_chart_outlined),
                         text: ("Schedule"),
-
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.video_collection),
-                        text: ("Section\nLink"),
                       ),
                     ],
                   ),
                   Column(
                     children: [
                       container(
-                        onTap: (){
-
-                        },
-                        text: ("Lectures\nLink"),
-                        icon: Icon(Icons.video_collection),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-                       showDialog(context: context, builder:(context) => Dialog(
-                         child:Padding(
-                           padding: const EdgeInsets.all(20.0),
-                           child: Container(
-                             height: mediaquery(context).height/3,
-
-                             child: SingleChildScrollView(
-                               child:Column(
-                                 children: [
-                                   Icon(Icons.warning_amber,color: ColorManager.error,),
-                                   SizedBox(height: 20,),
-                                   Text("hello please go to check your properties",textAlign: TextAlign.center,),
-                                 ],
-                               ),
-                             ),
-                           ),
-                         ) ,
-                       ),);
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => Dialog(
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Container(
+                                  height: mediaquery(context).height / 3,
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          Icons.warning_amber,
+                                          color: ColorManager.error,
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                          "hello please go to check your properties",
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
                         },
                         text: ("Warnings"),
-                        icon: Icon(Icons.dnd_forwardslash_outlined),
+                        icon: Icon(Icons.warning_amber),
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.group_sharp),
-                        text: ("Military\n Education"),
-                      ),
-                    ],
-                  )
                 ],
               ),
             ),
@@ -196,40 +278,8 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.padding),
-                        text: ("Gpa"),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.check_box),
-                        text: ("Attendance\nTracking"),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.padding),
+                        onTap: () {},
+                        icon: Icon(Icons.video_collection_outlined),
                         text: ("courses"),
                       ),
                     ],
@@ -237,14 +287,12 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.padding),
+                        onTap: () {},
+                        icon: Icon(Icons.access_time_outlined),
                         text: ("Previous\nExaminations"),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -256,21 +304,34 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.padding),
-                        text: ("Midterm\nExaminations"),
+                        onTap: () {},
+                        icon: Icon(Icons.auto_stories_sharp),
+                        text: ("Book\nList"),
                       ),
                     ],
                   ),
                   Column(
                     children: [
                       container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.padding),
+                        onTap: () {},
+                        icon: Icon(Icons.note_alt_outlined),
+                        text: ("Midterm\nExaminations"),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      container(
+                        onTap: () {},
+                        icon: Icon(Icons.home_repair_service_sharp),
                         text: ("Vacant\nPositions"),
                       ),
                     ],
@@ -286,39 +347,7 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.auto_stories_sharp),
-                        text: ("Book\nList"),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
-                        icon: Icon(Icons.mail),
-                        text: ("Institute\nMail"),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      container(
-                        onTap: (){
-
-                        },
+                        onTap: () {},
                         icon: Icon(Icons.padding),
                         text: ("------"),
                       ),
@@ -327,9 +356,7 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       container(
-                        onTap: (){
-
-                        },
+                        onTap: () {},
                         icon: Icon(Icons.padding),
                         text: ("-----"),
                       ),
