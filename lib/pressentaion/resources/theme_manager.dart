@@ -1,9 +1,6 @@
-
 import 'package:cridet_hour_system/pressentaion/resources/styles_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/values_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'color_manager.dart';
 import 'font_manager.dart';
 
@@ -16,6 +13,11 @@ ThemeData LightTheme() {
       checkColor: MaterialStateProperty.all(ColorManager.white),
       fillColor: MaterialStateProperty.all(ColorManager.primary),
 
+
+    ),
+    iconTheme: IconThemeData(
+      color: ColorManager.primary,
+      size: 35
 
     ),
 
@@ -39,9 +41,6 @@ ThemeData LightTheme() {
       backgroundColor: ColorManager.primary,
       centerTitle: true,
       elevation: 0,
-
-
-      actionsIconTheme: IconThemeData(color: ColorManager.white),
     ),
     dividerColor: ColorManager.black,
     primaryColor: ColorManager.primary,
@@ -80,7 +79,7 @@ ThemeData LightTheme() {
     textTheme: TextTheme(
       titleSmall: getRegularStyle(color: ColorManager.black,fontSize: FontSize.s12),
       titleMedium: getMediumStyle(color: ColorManager.black,fontSize: FontSize.s14),
-      titleLarge: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s16),
+      titleLarge: getBoldStyle(color: ColorManager.white,fontSize: FontSize.s16),
       displaySmall: getRegularStyle(color: ColorManager.black,fontSize: FontSize.s14),
       displayMedium: getMediumStyle(color: ColorManager.black,fontSize: FontSize.s18),
       displayLarge: getBoldStyle(color: ColorManager.black,fontSize: FontSize.s20),
