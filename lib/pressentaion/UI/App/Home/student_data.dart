@@ -1,3 +1,6 @@
+import 'package:cridet_hour_system/app/cubit/cubit.dart';
+import 'package:cridet_hour_system/pressentaion/UI/Absence/absence_presence.dart';
+import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/custom_widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
@@ -98,10 +101,15 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
                       value: 70.0,
                     ),
                   ),
-                  Expanded(
-                    child: progres_widget(
-                      text: 'Absence',
-                      value: 70.0,
+                     Expanded(
+                      child: InkWell(
+                          onTap:(){
+                            AppConstants.navigateTo(context,absence_presence());
+                          },
+                        child:progres_widget(
+                          text: 'Absence',
+                          value: 70.0,
+                        ),
                     ),
                   ),
                 ],
