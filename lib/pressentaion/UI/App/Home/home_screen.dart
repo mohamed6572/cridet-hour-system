@@ -1,6 +1,7 @@
 import 'package:cridet_hour_system/generated/assets.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/Home/student_data.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/courses/courses_screen.dart';
+import 'package:cridet_hour_system/pressentaion/UI/App/prev_exams/prev_exams.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/schedule/schedule_screen.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
@@ -277,7 +278,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       container(
                         onTap: (){
-
+                          AppConstants.navigateTo(context, Prev_Exmas_Screen());
 
                         },
                         icon: Icon(Icons.access_time_outlined),

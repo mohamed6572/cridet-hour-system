@@ -5,7 +5,11 @@ class Assets {
   static const String assetsB = 'assets/B.csv';
   static const String assetsBB = 'assets/BB.csv';
   static const String assetsImagesMe = 'assets/images/me.jpg';
+  static const String iconsArrowBack = 'assets/icons/arrow_back.svg';
+  static const String iconsCard = 'assets/icons/card.svg';
   static const String iconsLogo = 'assets/icons/logo.png';
+  static const String iconsMasterCard = 'assets/icons/master_card.svg';
+  static const String iconsPaypal = 'assets/icons/paypal.svg';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesMe = 'assets/images/me.jpg';
   static const String nada = 'assets/images/nada.jpg';

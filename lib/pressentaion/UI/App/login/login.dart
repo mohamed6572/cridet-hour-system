@@ -1,3 +1,4 @@
+import 'package:cridet_hour_system/pressentaion/UI/App/Home/home_screen.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/font_manager.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../../resources/custom_widgets/custom_widget.dart';
 import '../Register/register.dart';
+import '../payment/payments_details.dart';
 import 'Text_form_field.dart';
 
 class Login_screen extends StatefulWidget {
@@ -135,7 +137,8 @@ class _Login_screenState extends State<Login_screen> {
                         padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
                         child: TextButton(
                             onPressed: () {
-                              if (formKey.currentState!.validate()) {}
+                              AppConstants.navigateTo(context, PaymentsDetailsView());
+                              // if (formKey.currentState!.validate()) {}
                             },
                             child: Text(
                               'Login',
