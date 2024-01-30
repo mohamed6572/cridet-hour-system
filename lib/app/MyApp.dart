@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             //
-            home :HomeScreen(),
+            home :MediaQuery.sizeOf(context).width > 900
+              ?ControlPanal() : HomeScreen(),
             title: 'Cridet Hour Sytem',
             debugShowCheckedModeBanner: false,
             theme: LightTheme(),

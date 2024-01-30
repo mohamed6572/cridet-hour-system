@@ -102,15 +102,14 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
                     ),
                   ),
                      Expanded(
-                      child: InkWell(
-                          onTap:(){
+                      child: progres_widget(
+                        onTap:(){
+                          print('object');
                             AppConstants.navigateTo(context,absence_presence());
-                          },
-                        child:progres_widget(
-                          text: 'Absence',
-                          value: 70.0,
-                        ),
-                    ),
+                        } ,
+                        text: 'Absence',
+                        value: 70.0,
+                      ),
                   ),
                 ],
               ),
@@ -159,7 +158,7 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
   Widget progres_widget({required double value, text, onTap}) =>
       defult_container(
           child: InkWell(
-            onTap: () {},
+            onTap:onTap,
             child: Column(
               children: [
                 Container(
