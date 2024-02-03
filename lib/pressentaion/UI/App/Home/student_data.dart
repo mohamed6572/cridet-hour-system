@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cridet_hour_system/app/cubit/cubit.dart';
+import 'package:cridet_hour_system/app/cubit/state.dart';
 import 'package:cridet_hour_system/pressentaion/UI/Absence/absence_presence.dart';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/custom_widgets/custom_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../../../../generated/assets.dart';
@@ -20,6 +23,12 @@ class Student_PersonalData extends StatefulWidget {
 class _Student_PersonalDataState extends State<Student_PersonalData> {
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<AppCubit, AppState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    var cubit  =AppCubit.get(context);
     return Scaffold(
       appBar: app_AppBar(context),
       body: SingleChildScrollView(
@@ -48,9 +57,18 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      CircleAvatar(
-                        backgroundImage: AssetImage(Assets.nada),
-                        maxRadius: 50,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: CachedNetworkImage(
+
+                          imageUrl: "${cubit.student_model!.image}",
+                                              placeholder: (context, url) => CircularProgressIndicator(),
+                          fit: BoxFit.cover,
+                          width: 100,
+                          height: 100,
+
+                          errorWidget: (context, url, error) => Icon(Icons.error),
+                        ),
                       ),
                       SizedBox(
                         width: 10,
@@ -62,11 +80,11 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Center(
-                              child: Text("nada jamal",
+                              child: Text("${cubit.student_model!.name}",
                                   style: Theme.of(context).textTheme.bodyMedium),
                             ),
                             Center(
-                              child: Text("Level Four",
+                              child: Text("${cubit.student_model!.level}",
                                   style: Theme.of(context).textTheme.bodySmall),
                             ),
                           ],
@@ -83,7 +101,7 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
               ),
               Row(
                 children: [
-                  Checkbox(value: true, onChanged: (v) {}),
+                  Checkbox(value: cubit.student_model!.military, onChanged: (v) {}),
                   Text(
                     "Military Education",
                     style: Theme.of(context)
@@ -98,7 +116,7 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
                   Expanded(
                     child: progres_widget(
                       text: 'GPA',
-                      value: 70.0,
+                      value: cubit.student_model!.gpa!,
                     ),
                   ),
                      Expanded(
@@ -129,18 +147,18 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
                 child: Column(
                   children: [
                     ContainerPersonData(
-                      text: "hzn23n90cn12ne4a",
+                      text: "${cubit.student_model!.id}",
                       text1: "ID:",
                     ),ContainerPersonData(
-                      text: "nadajamal123.@",
+                      text: "${cubit.student_model!.password}",
                       text1: "password:",
                     ),
                     ContainerPersonData(
-                      text: "01099340772",
+                      text: "${cubit.student_model!.phone}",
                       text1: "phone:",
                     ),
                     ContainerPersonData(
-                      text: "nadajamal@gmail.com",
+                      text: "${cubit.student_model!.email}",
                       text1: "email:",
                     ),
 
@@ -153,6 +171,8 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
         ),
       ),
     );
+  },
+);
   }
 
   Widget progres_widget({required double value, text, onTap}) =>

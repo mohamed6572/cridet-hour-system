@@ -22,7 +22,7 @@ class ContainerPersonData extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-             style:Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 18),textAlign:TextAlign.start,
+             style:Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16),textAlign:TextAlign.start,
             ),
           )
         ],

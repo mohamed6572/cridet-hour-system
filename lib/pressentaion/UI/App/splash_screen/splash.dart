@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../../control_panal/control_panal.dart';
 import '../login/login.dart';
 
 
@@ -20,8 +19,6 @@ class _Splash_ScreenState extends State<Splash_Screen> {
     _timer = Timer(const Duration(seconds: 3), _goNext);
   }
   _goNext() {
-    if(Platform.isWindows||Platform.isMacOS)
-      AppConstants.navigateToAndFinish(context, ControlPanal());
 
     if(Platform.isAndroid||Platform.isIOS)
       AppConstants.navigateToAndFinish(context, Login_screen());

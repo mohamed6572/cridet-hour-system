@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "189285904403",
+    "project_id": "cridet-hour-system",
+    "storage_bucket": "cridet-hour-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189285904403:android:6c5d97c49e7e49f1f14fe6",
+        "android_client_info": {
+          "package_name": "com.example.cridet_hour_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDEwXMqIrKeZ8Dh2_Y0gYgXRz3mwHtTq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

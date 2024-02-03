@@ -1,13 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cridet_hour_system/app/cubit/cubit.dart';
+import 'package:cridet_hour_system/app/cubit/state.dart';
 import 'package:cridet_hour_system/generated/assets.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/Home/student_data.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/courses/courses_screen.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/midterm_screen/midterm_screen.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/schedule/schedule_screen.dart';
-import 'package:cridet_hour_system/pressentaion/UI/control_panal/screens/midle_exams/midle_exams.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/custom_widgets/custom_widget.dart';
+import 'package:cridet_hour_system/pressentaion/resources/models/user/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bookscreen/bookscreen.dart';
 import '../importantNews/importantNews.dart';
@@ -16,6 +20,12 @@ import 'component/container.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<AppCubit, AppState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    var cubit  =AppCubit.get(context);
     return Scaffold(
       appBar:app_AppBar(context),
       drawer: Drawer(
@@ -42,7 +52,9 @@ class HomeScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: InkWell(
-                      onTap:(){},
+                      onTap:(){
+                        print(AppCubit.get(context).student_model?.email);
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -175,9 +187,18 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      CircleAvatar(
-                        backgroundImage: AssetImage(Assets.nada),
-                        maxRadius: 50,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: CachedNetworkImage(
+
+                          imageUrl: "${cubit.student_model!.image}",
+                          placeholder: (context, url) => CircularProgressIndicator(),
+                          fit: BoxFit.cover,
+                          width: 100,
+                          height: 100,
+
+                          errorWidget: (context, url, error) => Icon(Icons.error),
+                        ),
                       ),
                       SizedBox(
                         width: 10,
@@ -189,11 +210,11 @@ class HomeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Center(
-                              child: Text("nada jamal",
+                              child: Text("${cubit.student_model!.name}",
                                   style: Theme.of(context).textTheme.bodyMedium),
                             ),
                             Center(
-                              child: Text("Level Four",
+                              child: Text("${cubit.student_model!.level}",
                                   style: Theme.of(context).textTheme.bodySmall),
                             ),
                           ],
@@ -380,5 +401,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }

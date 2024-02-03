@@ -37,3 +37,13 @@ class AppConstants{
 
 
 }
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAQwbU05l6BIkOCapYyseewjNxckIcTsuw",
+//   authDomain: "cridet-hour-system.firebaseapp.com",
+//   projectId: "cridet-hour-system",
+//   storageBucket: "cridet-hour-system.appspot.com",
+//   messagingSenderId: "189285904403",
+//   appId: "1:189285904403:web:3eb3580b825750b2f14fe6"
+// };
+

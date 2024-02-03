@@ -1,13 +1,14 @@
 import 'package:cridet_hour_system/app/cubit/cubit.dart';
 import 'package:cridet_hour_system/app/cubit/state.dart';
 import 'package:cridet_hour_system/pressentaion/UI/Absence/absence_presence.dart';
-import 'package:cridet_hour_system/pressentaion/UI/control_panal/control_panal.dart';
+import 'package:cridet_hour_system/pressentaion/UI/App/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../pressentaion/UI/App/Home/home_screen.dart';
+import '../pressentaion/UI/App/Register/register.dart';
 import '../pressentaion/resources/theme_manager.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -22,8 +23,7 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             //
-            home :MediaQuery.sizeOf(context).width > 900
-              ?ControlPanal() : HomeScreen(),
+            home : Login_screen(),
             title: 'Cridet Hour Sytem',
             debugShowCheckedModeBanner: false,
             theme: LightTheme(),
