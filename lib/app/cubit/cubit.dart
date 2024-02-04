@@ -15,6 +15,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../../pressentaion/resources/models/cousrs/courses_model.dart';
+
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(AppIniteal());
 
@@ -25,7 +27,18 @@ class AppCubit extends Cubit<AppState> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+bool isCard =true;
 
+void ChangeCard(index){
+  if(index==0){
+  isCard = true;
+  emit(changeisCardState());
+  }if(index==1){
+   isCard = false;
+   emit(changeisCardState());
+  }
+
+}
   //function to upload image
   File? personimage;
   var picker = ImagePicker();
@@ -203,6 +216,7 @@ class AppCubit extends Cubit<AppState> {
           Student_Model userData = Student_Model(
               password: password,
               email: email,
+              isPaid: false,
               id: uid,
               soldiers_image_1: downloadUrls[4],
               soldiers_image_2: downloadUrls[5],
@@ -533,6 +547,7 @@ class AppCubit extends Cubit<AppState> {
   Student_Model? student_model;
   // Function to get user data from Firestore
   void getUserData() async {
+    emit(getUserLoadingState());
     print('get data');
     try {
       User? user = _auth.currentUser;
@@ -545,16 +560,79 @@ class AppCubit extends Cubit<AppState> {
           student_model = Student_Model.fromJson(snapshot.data()!);
           print(student_model?.email);
           print(snapshot.data());
+          emit(getUserSuccsesState());
           // If the document exists, create a Student object from the data
         } else {
+          emit(getUserErrorState());
+          print('doc not exist');
           return null; // Return null if the document does not exist
         }
       } else {
+        emit(getUserErrorState());
+        print('no user log in');
         return null; // Return null if no user is logged in
       }
     } catch (e) {
+      emit(getUserErrorState());
       print(e.toString());
       return null; // Return null in case of an error
     }
   }
+
+  void PayUser(){
+   emit(PayLoadingState());
+   User? user = _auth.currentUser;
+   _firestore.collection('students').doc(user?.uid).update(
+     {
+       'isPaid': true,
+     }
+   ).then((value) {
+     getUserData();
+     emit(PaySuccsesState());
+   }).catchError((e){
+     emit(PayErrorState());
+     print(e.toString());
+   });
+  }
+
+  List<Courses_Model> CourseLinkList = [
+
+  ];
+
+  Future<void> GetCousrsData({required context}) async {
+    CourseLinkList = [];
+
+    emit(GetCourseModelLoadingState());
+    print('get Cousrs data');
+    try {
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+      await _firestore.collection('Courses').get();
+
+      CourseLinkList = querySnapshot.docs
+          .map((DocumentSnapshot<Map<String, dynamic>> element) =>
+          Courses_Model.fromJson(element.data()!))
+          .toList();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: ColorManager.green,
+          content: Text(
+              textAlign: TextAlign.center,
+              'GET Success ',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall!
+                  .copyWith(color: Colors.white)),
+          duration: Duration(seconds: 3), // Adjust the duration as needed
+        ),
+      );
+      emit(GetCourseModelSuccsesState());
+    } catch (e) {
+      print(e.toString());
+      emit(GetCourseModelErrorState());
+    }
+  }
+
+
+
 }

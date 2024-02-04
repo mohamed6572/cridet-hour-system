@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../resources/custom_widgets/custom_widget.dart';
 import '../Register/register.dart';
+import '../waitingScreen/waiting_screen.dart';
 import 'Text_form_field.dart';
 
 class Login_screen extends StatefulWidget {
@@ -29,11 +30,11 @@ class _Login_screenState extends State<Login_screen> {
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {
         if (state is SignInSuccesState) {
-          AppConstants.navigateToAndFinish(context, HomeScreen());
+          AppConstants.navigateToAndFinish(context, ());
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text(
-                'Login Succses Going To Home ...',
+                'Login Succses Going To Waiting ...',
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,

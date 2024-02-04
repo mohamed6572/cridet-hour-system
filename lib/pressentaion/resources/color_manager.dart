@@ -21,5 +21,6 @@ class ColorManager {
   static Color get  dark => const Color(0xff232F3E);
   static Color get  blueDark => const Color(0xff61D4FF);
   static Color get  boxShadowColor =>  Colors.black38;
+  static Color get  warning =>  Colors.yellow;
 
 }

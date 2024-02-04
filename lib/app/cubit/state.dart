@@ -38,3 +38,12 @@ class UpdateImagesErrorState extends AppState {}
 class getUserLoadingState extends AppState {}
 class getUserSuccsesState extends AppState {}
 class getUserErrorState extends AppState {}
+//card state
+class changeisCardState extends AppState {}
+//paid
+class PayLoadingState extends AppState {}
+class PaySuccsesState extends AppState {}
+class PayErrorState extends AppState {}
+class GetCourseModelLoadingState extends AppState {}
+class GetCourseModelSuccsesState extends AppState {}
+class GetCourseModelErrorState extends AppState {}

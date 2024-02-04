@@ -9,6 +9,7 @@ class Student_Model {
   String? email;
   bool? military;
   bool? isApproved;
+  bool? isPaid;
   String? level;
   Map<String, dynamic>? absence;
   List<String>? warning;
@@ -93,6 +94,7 @@ class Student_Model {
     required this.idCardNumber,
     required this.degreeTotal,
     required this.sittingNumber,
+    required this.isPaid,
     required this.schoolName,
     required this.receivedData,
     required this.bandDivision,
@@ -109,6 +111,7 @@ class Student_Model {
     return Student_Model(
       name: json['Name'],
       isApproved: json['isApproved'],
+      isPaid: json['isPaid'],
       levelar: json['levelar'],
       image: json['Image'],
       soldiers_image_1: json['soldiers_image_1'],
@@ -213,6 +216,7 @@ class Student_Model {
       'Enrollment_status': enrollmentStatus,
       'Division_Institute': divisionInstitute,
       'school_year': schoolYear,
+      'isPaid': isPaid,
     };
   }
 }
