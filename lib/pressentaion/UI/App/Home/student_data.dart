@@ -30,7 +30,7 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
   builder: (context, state) {
     var cubit  =AppCubit.get(context);
     return Scaffold(
-      appBar: app_AppBar(context),
+      appBar: app_AppBar(context: context,text: 'Profile'),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(20),

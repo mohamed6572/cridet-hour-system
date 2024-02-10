@@ -47,3 +47,45 @@ class PayErrorState extends AppState {}
 class GetCourseModelLoadingState extends AppState {}
 class GetCourseModelSuccsesState extends AppState {}
 class GetCourseModelErrorState extends AppState {}
+class SignOutLoadingState extends AppState {}
+class SignOutSuccsesState extends AppState {}
+class SignOutErrorState extends AppState {}
+//upload image table
+
+class Upload_tablesLoadingState extends AppState {}
+class Upload_tablesSuccsesState extends AppState {}
+class Upload_tablesErrorState extends AppState {}
+//get image table
+
+class Get_tablesLoadingState extends AppState {}
+class Get_tablesSuccsesState extends AppState {}
+class Get_tablesErrorState extends AppState {}
+//delete table image
+
+class Delete_tablesLoadingState extends AppState {}
+class Delete_tablesSuccsesState extends AppState {}
+class Delete_tablesErrorState extends AppState {}
+
+//download image
+class DownloadImage_Table_LodingState extends AppState{}
+class DownloadImage_Table_SuccessState extends AppState{}
+class DownloadImage_Table_ErrorState extends AppState{}
+class Download_ImportantNews_LodingState extends AppState{}
+class Download_ImportantNews_SuccessState extends AppState{}
+class Download_ImportantNews_ErrorState extends AppState{}
+class Download_LastExam_LodingState extends AppState{}
+class Download_LastExam_SuccessState extends AppState{}
+class Download_LastExam_ErrorState extends AppState{}
+
+
+class Get_Last_Exam_LoadingState extends AppState {}
+class Get_Last_Exam_SuccsesState extends AppState {}
+class Get_Last_Exam_ErrorState extends AppState {}
+
+
+//get image last exam
+
+class Get_ImportantNews_LoadingState extends AppState {}
+class Get_ImportantNews_SuccsesState extends AppState {}
+class Get_ImportantNews_ErrorState extends AppState {}
+

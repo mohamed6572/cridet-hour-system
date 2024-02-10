@@ -27,7 +27,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
     return BlocConsumer<AppCubit,AppState>(builder: (context, state) {
       var cubit = AppCubit.get(context);
       return Scaffold(
-        appBar: app_AppBar(context),
+        appBar: app_AppBar(context: context,text: 'Courses'),
         body: Column(
           children: [
             SizedBox(height: 20,),

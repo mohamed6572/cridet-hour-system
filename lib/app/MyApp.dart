@@ -23,6 +23,8 @@ class MyApp extends StatelessWidget {
       child: BlocConsumer<AppCubit, AppState>(
         listener: (context, state) {},
         builder: (context, state) {
+
+          print( FirebaseAuth.instance.idTokenChanges().listen((event) {event?.getIdToken();}));
           return MaterialApp(
             home: FirebaseAuth.instance.currentUser != null
                 ? AppCubit.get(context).student_model?.isApproved == false

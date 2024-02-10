@@ -3,19 +3,24 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:cridet_hour_system/app/cubit/state.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
+import 'package:cridet_hour_system/pressentaion/resources/models/important_news_Image_model/important_news_Image_model.dart';
 import 'package:cridet_hour_system/pressentaion/resources/models/user/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'dart:typed_data';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import '../../pressentaion/resources/constants_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-import '../../pressentaion/resources/models/cousrs/courses_model.dart';
+import '../../pressentaion/resources/models/courses/courses_model.dart';
+import '../../pressentaion/resources/models/tableImage_model/tableImage_model.dart';
 
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(AppIniteal());
@@ -633,6 +638,138 @@ void ChangeCard(index){
     }
   }
 
+  List<Table_Image_Model> tableImages =[];
 
+  Future<void> GetTableImages({required context,required grade}) async {
+    tableImages = [];
+
+
+    emit(Get_tablesLoadingState());
+    print('get tabel iamge');
+    try {
+      var map = await _firestore.collection("Table_Images").get();
+      map.docs.forEach((element) {
+        if(element.data()['grade']==grade)
+        tableImages.add(Table_Image_Model.fromJson(element.data()));
+      });
+      print(tableImages);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: ColorManager.green,
+          content: Text(
+              textAlign: TextAlign.center,
+              'GET Succes ',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall!
+                  .copyWith(color: Colors.white)),
+          duration: Duration(seconds: 3), // Adjust the duration as needed
+        ),
+      );
+      emit(Get_tablesSuccsesState());
+    } catch (e) {
+      print(e.toString());
+      emit(Get_tablesErrorState());
+      return null; // Return null in case of an error
+    }
+  }
+  Future<void> download_Image({imageUrl, context}) async {
+    emit(DownloadImage_Table_LodingState());
+    try {
+      http.Response response = await http.get(Uri.parse(imageUrl));
+      if (response.statusCode == 200) {
+        // Convert the response body to Uint8List (bytes)
+        Uint8List bytes = response.bodyBytes;
+
+        // Compress the image
+        List<int> compressedBytes = await FlutterImageCompress.compressWithList(
+          bytes,
+          minHeight: 1920,
+          minWidth: 1080,
+          quality: 95,
+        );
+
+        // Save the compressed image to the gallery
+        final result = await ImageGallerySaver.saveImage(
+          Uint8List.fromList(compressedBytes),
+          name: 'Cridet_Hour_System_Images', // Optional: Provide a custom album name
+        );
+
+        if (result != null) {
+          // Image saved successfully
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Download completed successfully',
+              ),
+              backgroundColor: Colors.green,
+            ),
+          );
+          emit(DownloadImage_Table_SuccessState());
+          print('Image saved to gallery! Path: $result');
+        } else {
+          // Error occurred while saving the image
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Download Error'), backgroundColor: Colors.red),
+          );
+          emit(DownloadImage_Table_ErrorState());
+          print('Error saving image to gallery.');
+        }
+      } else {
+        emit(DownloadImage_Table_ErrorState());
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text('We have a problem right now'),
+              backgroundColor: Colors.red),
+        );
+        // Handle API error
+        print('API Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle other errors
+      emit(DownloadImage_Table_ErrorState());
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text('We have a problem right now'),
+            backgroundColor: Colors.red),
+      );
+      print('Error: $e');
+    }
+  }
+  List<ImportantNews_Image_Model> ImportantNewsImages =[];
+
+  Future<void> GetImportantNewsImages({required context,required grade}) async {
+    ImportantNewsImages = [];
+
+
+    emit(Get_ImportantNews_LoadingState());
+    print('get imprtant iamge');
+    try {
+      var map = await _firestore.collection("ImportantNews_Images").get();
+      map.docs.forEach((element) {
+        if(element.data()['grade']==grade)
+        ImportantNewsImages.add(ImportantNews_Image_Model.fromJson(element.data()));
+      });
+      print(ImportantNewsImages);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: ColorManager.green,
+          content: Text(
+              textAlign: TextAlign.center,
+              'GET Succes ',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall!
+                  .copyWith(color: Colors.white)),
+          duration: Duration(seconds: 3), // Adjust the duration as needed
+        ),
+      );
+      emit(Get_ImportantNews_SuccsesState());
+    } catch (e) {
+      print(e.toString());
+      emit(Get_ImportantNews_ErrorState());
+      return null; // Return null in case of an error
+    }
+  }
 
 }

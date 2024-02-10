@@ -14,7 +14,7 @@ class BookScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit,AppState>(builder: (context, state) {
       return Scaffold(
-        appBar: app_AppBar(context),
+        appBar: app_AppBar(context: context,text: 'Books'),
         body: Column(
           children: [
             SizedBox(height: 20,),

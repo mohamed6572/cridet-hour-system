@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../resources/custom_widgets/custom_widget.dart';
 import '../Register/register.dart';
+import '../payment/payments_details.dart';
 import '../waitingScreen/waiting_screen.dart';
 import 'Text_form_field.dart';
 
@@ -29,8 +30,12 @@ class _Login_screenState extends State<Login_screen> {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {
-        if (state is SignInSuccesState) {
-          AppConstants.navigateToAndFinish(context, ());
+        if (state is SignInSuccesState && state is getUserSuccsesState) {
+          AppCubit.get(context).student_model?.isApproved == false ?  AppConstants.navigateTo(context,WaitingScreen()) : AppCubit.get(context).student_model?.isPaid == false ?
+          AppConstants.navigateTo(context,PaymentsDetailsView()):AppConstants.navigateToAndFinish(context,HomeScreen());
+
+
+
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text(

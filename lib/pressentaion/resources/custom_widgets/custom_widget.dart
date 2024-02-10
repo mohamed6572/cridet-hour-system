@@ -110,10 +110,10 @@ Widget defult_button ({required  text,required  context,required  color,required
   ),
   child:Text('$text',style: Theme.of(context).textTheme.bodySmall!.copyWith(color: tcolor),), );
 
-AppBar app_AppBar(context)=>  AppBar(
+AppBar app_AppBar({String? text = 'HIMIT', context})=>  AppBar(
 
   centerTitle: true,
-  title: Text("HIMIT",
+  title: Text(text?? 'HIMIT',
       style: Theme.of(context)
           .textTheme
           .bodyLarge!

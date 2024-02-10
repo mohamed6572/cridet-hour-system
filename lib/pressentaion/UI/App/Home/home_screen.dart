@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var cubit  =AppCubit.get(context);
 
     return Scaffold(
-      appBar:app_AppBar(context),
+      appBar:app_AppBar(context:context),
       drawer: Drawer(
         backgroundColor: ColorManager.primary,
         child: SingleChildScrollView(
@@ -254,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           },
                           icon: Icon(Icons.table_chart_outlined),
-                          text: ("Schedule"),
+                          text: ("Tables"),
 
                         ),
                       ],

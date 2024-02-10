@@ -16,7 +16,7 @@ class Prev_Exmas_Screen extends StatelessWidget {
     return BlocConsumer<AppCubit, AppState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: app_AppBar(context),
+          appBar: app_AppBar(context: context,text: 'Previous Exams'),
           body: Column(
             children: [
               SizedBox(
