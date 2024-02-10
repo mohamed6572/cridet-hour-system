@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../resources/color_manager.dart';
 import '../../../resources/custom_widgets/custom_widget.dart';
 
 class CoursesScreen extends StatefulWidget {
@@ -16,6 +17,11 @@ class CoursesScreen extends StatefulWidget {
 }
 
 class _CoursesScreenState extends State<CoursesScreen> {
+  Future<void> _refreshData(BuildContext context) async {
+    final cubit = AppCubit.get(context);
+
+    cubit.GetCousrsData(context: context);
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -28,7 +34,10 @@ class _CoursesScreenState extends State<CoursesScreen> {
       var cubit = AppCubit.get(context);
       return Scaffold(
         appBar: app_AppBar(context: context,text: 'Courses'),
-        body: Column(
+        body:RefreshIndicator(
+            color: ColorManager.primary,
+            onRefresh: () => _refreshData(context),
+            child: Column(
           children: [
             SizedBox(height: 20,),
             Expanded(
@@ -60,7 +69,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
               },),
             )
           ],
-        ),
+        )),
       );
     }, listener: (context, state) {
 

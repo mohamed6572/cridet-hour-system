@@ -17,6 +17,11 @@ class ScheduleScreen extends StatefulWidget {
 }
 
 class _ScheduleScreenState extends State<ScheduleScreen> {
+  Future<void> _refreshData(BuildContext context) async {
+    final cubit = AppCubit.get(context);
+
+    cubit.GetTableImages(context: context, grade: AppCubit.get(context).student_model!.levelar);
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -29,7 +34,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       var cubit = AppCubit.get(context);
       return Scaffold(
         appBar: app_AppBar(context:context , text: 'Tables' ),
-         body: BuildCondition(
+         body:RefreshIndicator(
+             color: ColorManager.primary,
+             onRefresh: () => _refreshData(context), child :BuildCondition(
            fallback: (context) => Center(child: state is Get_tablesLoadingState ? CircularProgressIndicator() : Text('لايوجد صور بعد'),),
            condition:cubit.tableImages.isNotEmpty,
            builder: (context) {
@@ -76,7 +83,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                                          decoration: BoxDecoration(
                                              color: ColorManager.primary,
                                              shape: BoxShape.circle),
-                                         child:state is DownloadImage_Table_LodingState ? Center(child: CircularProgressIndicator(color: ColorManager.white),) : Icon(Icons.download_outlined,color: ColorManager.white,size: 24,),
+                                         child:state is Download_Image_LodingState ? Center(child: CircularProgressIndicator(color: ColorManager.white),) : Icon(Icons.download_outlined,color: ColorManager.white,size: 24,),
                                        ),
                                      ),
                                    ],
@@ -91,7 +98,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
              );
            },
-         )
+         ))
       );
     }, listener: (context, state) {
 

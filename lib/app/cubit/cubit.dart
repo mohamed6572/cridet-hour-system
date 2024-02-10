@@ -20,6 +20,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../pressentaion/resources/models/courses/courses_model.dart';
+import '../../pressentaion/resources/models/last_exam_image_model/last_exam_image_model.dart';
 import '../../pressentaion/resources/models/tableImage_model/tableImage_model.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -674,7 +675,7 @@ void ChangeCard(index){
     }
   }
   Future<void> download_Image({imageUrl, context}) async {
-    emit(DownloadImage_Table_LodingState());
+    emit(Download_Image_LodingState());
     try {
       http.Response response = await http.get(Uri.parse(imageUrl));
       if (response.statusCode == 200) {
@@ -705,18 +706,18 @@ void ChangeCard(index){
               backgroundColor: Colors.green,
             ),
           );
-          emit(DownloadImage_Table_SuccessState());
+          emit(Download_Image_SuccessState());
           print('Image saved to gallery! Path: $result');
         } else {
           // Error occurred while saving the image
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Download Error'), backgroundColor: Colors.red),
           );
-          emit(DownloadImage_Table_ErrorState());
+          emit(Download_Image_ErrorState());
           print('Error saving image to gallery.');
         }
       } else {
-        emit(DownloadImage_Table_ErrorState());
+        emit(Download_Image_ErrorState());
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
               content: Text('We have a problem right now'),
@@ -727,7 +728,7 @@ void ChangeCard(index){
       }
     } catch (e) {
       // Handle other errors
-      emit(DownloadImage_Table_ErrorState());
+      emit(Download_Image_ErrorState());
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
             content: Text('We have a problem right now'),
@@ -768,6 +769,41 @@ void ChangeCard(index){
     } catch (e) {
       print(e.toString());
       emit(Get_ImportantNews_ErrorState());
+      return null; // Return null in case of an error
+    }
+  }
+  List<Last_Exam_Image_Model> last_examImages =[];
+
+  Future<void> Get_LastExam_Images({required context,required grade}) async {
+    last_examImages = [];
+
+
+    emit(Get_Last_Exam_LoadingState());
+    print('get imprtant iamge');
+    try {
+      var map = await _firestore.collection("Last_Exam_Images").get();
+      map.docs.forEach((element) {
+        if(element.data()['grade']==grade)
+          last_examImages.add(Last_Exam_Image_Model.fromJson(element.data()));
+      });
+      print(last_examImages);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: ColorManager.green,
+          content: Text(
+              textAlign: TextAlign.center,
+              'GET Succes ',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall!
+                  .copyWith(color: Colors.white)),
+          duration: Duration(seconds: 3), // Adjust the duration as needed
+        ),
+      );
+      emit(Get_Last_Exam_SuccsesState());
+    } catch (e) {
+      print(e.toString());
+      emit(Get_Last_Exam_ErrorState());
       return null; // Return null in case of an error
     }
   }

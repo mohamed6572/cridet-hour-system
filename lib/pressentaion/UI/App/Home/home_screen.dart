@@ -16,6 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bookscreen/bookscreen.dart';
 import '../importantNews/importantNews.dart';
+import '../prev_exams/prev_exams.dart';
 import 'component/container.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,6 +25,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Future<void> _refreshData(BuildContext context) async {
+    AppCubit.get(context).getUserData();
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -172,7 +176,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: BuildCondition(
+      body:RefreshIndicator(
+          color: ColorManager.primary,
+          onRefresh: () => _refreshData(context),
+          child: state is getUserLoadingState ?Center(child: CircularProgressIndicator(),): BuildCondition(
         builder: (context) => SingleChildScrollView(
           child: Column(
             children: [
@@ -315,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         container(
                           onTap: (){
-
+AppConstants.navigateTo(context, Prev_Exmas_Screen());
 
                           },
                           icon: Icon(Icons.access_time_outlined),
@@ -417,7 +424,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         fallback: (context) => Center(child: CircularProgressIndicator(),),
         condition: cubit.student_model !=null,
-      ),
+      )),
     );
   },
 );

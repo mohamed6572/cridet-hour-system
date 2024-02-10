@@ -67,15 +67,11 @@ class Delete_tablesSuccsesState extends AppState {}
 class Delete_tablesErrorState extends AppState {}
 
 //download image
-class DownloadImage_Table_LodingState extends AppState{}
-class DownloadImage_Table_SuccessState extends AppState{}
-class DownloadImage_Table_ErrorState extends AppState{}
-class Download_ImportantNews_LodingState extends AppState{}
-class Download_ImportantNews_SuccessState extends AppState{}
-class Download_ImportantNews_ErrorState extends AppState{}
-class Download_LastExam_LodingState extends AppState{}
-class Download_LastExam_SuccessState extends AppState{}
-class Download_LastExam_ErrorState extends AppState{}
+
+class Download_Image_LodingState extends AppState{}
+class Download_Image_SuccessState extends AppState{}
+class Download_Image_ErrorState extends AppState{}
+
 
 
 class Get_Last_Exam_LoadingState extends AppState {}
