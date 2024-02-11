@@ -44,10 +44,14 @@ class Midterm_Exam extends StatelessWidget {
                 padding: EdgeInsets.all(12),
                 child: Row(
                   children: [
-                    Container(
-                      width: 300,
-                      child: Text(
-                          "is the branch of computer science that deals with the design."),
+                    Expanded(
+                      child: Container(
+
+
+                        child: Text(
+                            "is the branch of computer science that deals with the design."),
+
+                      ),
                     ),
                     Icon(
                       Icons.check_circle,
@@ -55,15 +59,18 @@ class Midterm_Exam extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-              Padding(
+              ),  Padding(
                 padding: EdgeInsets.all(12),
                 child: Row(
                   children: [
-                    Container(
-                      width: 300,
-                      child: Text(
-                          "is the branch of computer science that deals with the design."),
+                    Expanded(
+                      child: Container(
+
+
+                        child: Text(
+                            "is the branch of computer science that deals with the design."),
+
+                      ),
                     ),
                     Icon(
                       Icons.check_circle,
@@ -71,15 +78,18 @@ class Midterm_Exam extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-              Padding(
+              ),  Padding(
                 padding: EdgeInsets.all(12),
                 child: Row(
                   children: [
-                    Container(
-                      width: 300,
-                      child: Text(
-                          "is the branch of computer science that deals with the design."),
+                    Expanded(
+                      child: Container(
+
+
+                        child: Text(
+                            "is the branch of computer science that deals with the design."),
+
+                      ),
                     ),
                     Icon(
                       Icons.check_circle,
@@ -109,10 +119,14 @@ class Midterm_Exam extends StatelessWidget {
                 padding: EdgeInsets.all(12),
                 child: Row(
                   children: [
-                    Container(
-                      width: 300,
-                      child: Text(
-                          "is the branch of computer science that deals with the design."),
+                    Expanded(
+                      child: Container(
+
+
+                        child: Text(
+                            "is the branch of computer science that deals with the design."),
+
+                      ),
                     ),
                     Icon(
                       Icons.check_circle,
@@ -125,26 +139,14 @@ class Midterm_Exam extends StatelessWidget {
                 padding: EdgeInsets.all(12),
                 child: Row(
                   children: [
-                    Container(
-                      width: 300,
-                      child: Text(
-                          "is the branch of computer science that deals with the design."),
-                    ),
-                    Icon(
-                      Icons.check_circle,
-                      size: 20,
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(12),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 300,
-                      child: Text(
-                          "is the branch of computer science that deals with the design."),
+                    Expanded(
+                      child: Container(
+
+
+                        child: Text(
+                            "is the branch of computer science that deals with the design."),
+
+                      ),
                     ),
                     Icon(
                       Icons.check_circle,

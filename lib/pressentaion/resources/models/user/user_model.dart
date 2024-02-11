@@ -10,6 +10,7 @@ class Student_Model {
   bool? military;
   bool? isApproved;
   bool? isPaid;
+  bool? logOut;
   String? level;
   Map<String, dynamic>? absence;
   List<String>? warning;
@@ -73,6 +74,7 @@ class Student_Model {
     required this.idPhoto,
     required this.photograph,
     required this.nominationCard,
+    required this.logOut,
     required this.doneIn,
     required this.studentPhone,
     required this.guardianPhone,
@@ -110,6 +112,7 @@ class Student_Model {
   factory Student_Model.fromJson(Map<String, dynamic> json) {
     return Student_Model(
       name: json['Name'],
+      logOut: json['logOut'],
       isApproved: json['isApproved'],
       isPaid: json['isPaid'],
       levelar: json['levelar'],
@@ -178,6 +181,7 @@ class Student_Model {
       'Level': level,
       'Absence': absence,
       'Warning': warning,
+      'logOut': logOut,
       'Book_List': bookList,
       'Student_Address': studentAddress,
       'Gender': gender,

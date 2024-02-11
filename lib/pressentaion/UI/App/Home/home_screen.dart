@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:buildcondition/buildcondition.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cridet_hour_system/app/cubit/cubit.dart';
@@ -5,12 +7,14 @@ import 'package:cridet_hour_system/app/cubit/state.dart';
 import 'package:cridet_hour_system/generated/assets.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/Home/student_data.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/courses/courses_screen.dart';
+import 'package:cridet_hour_system/pressentaion/UI/App/login/login.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/midterm_screen/midterm_screen.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/schedule/schedule_screen.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/custom_widgets/custom_widget.dart';
 import 'package:cridet_hour_system/pressentaion/resources/models/user/user_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,19 +31,31 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Future<void> _refreshData(BuildContext context) async {
     AppCubit.get(context).getUserData();
+
   }
+  Timer? _timer;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     AppCubit.get(context).getUserData();
+   
+    _timer = Timer(const Duration(seconds: 6), ()async{
+      if (AppCubit.get(context).student_model?.logOut == true) {
+        print('logiut : ${AppCubit.get(context).student_model?.logOut}');
+        await FirebaseAuth.instance.signOut();
+        AppConstants.navigateToAndFinish(context, Login_screen());
+      }
+
+    });
+
   }
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
   listener: (context, state) {
-    // TODO: implement listener
-  },
+
+      },
   builder: (context, state) {
 
     var cubit  =AppCubit.get(context);
@@ -74,21 +90,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         print(AppCubit.get(context).student_model?.email);
                       },
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
-                            "مصر،كفرالشيخ",
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
                           Icon(
                             Icons.location_on_outlined,
                             color: ColorManager.white,
                             size: 25,
                           ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Egypt,Kafr El-sheik",
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+
+
                         ],
                       ),
                     ),
@@ -98,20 +116,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: InkWell(
                       onTap:(){},
                       child:Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
-                            "01099340772",
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
                           Icon(
                             Icons.call,
                             color: Colors.white,
                             size: 25,
-                          )
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "01099340772",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+
+
                         ],
                       ),
                     ),
@@ -121,20 +141,49 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: InkWell(
                       onTap:(){},
                       child:Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
-                            "nadajamal@gmail.com",
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
                           Icon(
                             Icons.mail,
                             color: Colors.white,
                             size: 25,
-                          )
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Himit@gmail.com",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+
+
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: InkWell(
+                      onTap:(){
+
+                      },
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.logout,
+                            color: Colors.red,
+                            size: 25,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Log out",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+
+
                         ],
                       ),
                     ),

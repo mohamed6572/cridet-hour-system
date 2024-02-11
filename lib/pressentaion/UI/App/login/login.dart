@@ -182,7 +182,7 @@ class _Login_screenState extends State<Login_screen> {
                                         password: passwordController.text);
                                   }
                                 },
-                                child: Text(
+                                child:state is SignInLosingState ? Center(child: CircularProgressIndicator(color: ColorManager.white,),) : Text(
                                   'Login',
                                   style: Theme.of(context)
                                       .textTheme

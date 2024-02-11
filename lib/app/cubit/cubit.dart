@@ -221,7 +221,7 @@ void ChangeCard(index){
           print(downloadUrls);
           Student_Model userData = Student_Model(
               password: password,
-              email: email,
+              email: email,logOut: false,
               isPaid: false,
               id: uid,
               soldiers_image_1: downloadUrls[4],
@@ -453,8 +453,19 @@ void ChangeCard(index){
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {
-        getUserData();
         emit(SignInSuccesState());
+        getUserData();
+        _firestore.collection('students').doc(value?.user?.uid).update(
+            {
+              'logOut': false,
+            }
+        ).then((value) {
+          getUserData();
+        }).catchError((e){
+          print(e.toString());
+          emit(SignInErrorState());
+        });
+
       });
       // Return null if login is successful
     } on FirebaseAuthException catch (e) {
