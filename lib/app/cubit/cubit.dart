@@ -19,6 +19,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../../pressentaion/resources/models/absesnse/absesnse_model.dart';
 import '../../pressentaion/resources/models/courses/courses_model.dart';
 import '../../pressentaion/resources/models/last_exam_image_model/last_exam_image_model.dart';
 import '../../pressentaion/resources/models/subject_model/subject_model.dart';
@@ -864,5 +865,57 @@ void ChangeCard(index){
     }
   }
   List<Subject_Model> firstGrade_subjects = [];
+  List<Absennse_Model> absennse_model =[];
+  Future<void> Get_Absence({
+    required context,
 
+  }) async {
+    emit(Get_absence_LoadingState());
+    absennse_model =[];
+    print('Get absence data');
+    try {
+      var map  =await _firestore
+          .collection("subjects_name").get();
+      map.docs.forEach((element) async {
+        print(element.data()['subject_name']);
+        var map =  await _firestore
+            .collection("absense").doc('4YJJzeZVywY3RO8cowAR').collection('${element.data()['subject_name']}')
+            .get();
+        map.docs.forEach((element) {
+
+          absennse_model.add(Absennse_Model.fromJson(element.data()));
+          print(absennse_model.length);
+          print(absennse_model);
+
+        });
+
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: ColorManager.green,
+            content: Text(
+              textAlign: TextAlign.center,
+              'Done ',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall!
+                  .copyWith(color: Colors.white),
+            ),
+            duration: Duration(milliseconds: 300),
+          ),
+        );
+      });
+      emit(Get_absence_SuccsesState());
+
+
+
+
+    }  catch (e) {
+
+      print(e.toString());
+      emit(Get_absence_ErrorState());
+
+      return null;
+    }
+  }
 }

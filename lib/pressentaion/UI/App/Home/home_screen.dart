@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
     AppCubit.get(context).getUserData();
-   
+    AppCubit.get(context).Get_Absence(context: context);
     _timer = Timer(const Duration(seconds: 6), ()async{
       if (AppCubit.get(context).student_model?.logOut == true) {
         print('logiut : ${AppCubit.get(context).student_model?.logOut}');
@@ -263,6 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Center(
                 child: InkWell(
                   onTap: (){
+
                     AppConstants.navigateTo(context, Student_PersonalData());
                   },
                   child: Container(
@@ -473,37 +474,37 @@ AppConstants.navigateTo(context, Prev_Exmas_Screen());
                   ],
                 ),
               ),
-
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        container(
-                          onTap: (){
-
-                          },
-                          icon: Icon(Icons.padding),
-                          text: ("------"),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        container(
-                          onTap: (){
-
-                          },
-                          icon: Icon(Icons.padding),
-                          text: ("-----"),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
+              //
+              // Padding(
+              //   padding: EdgeInsets.all(20),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Column(
+              //         children: [
+              //           container(
+              //             onTap: (){
+              //
+              //             },
+              //             icon: Icon(Icons.padding),
+              //             text: ("------"),
+              //           ),
+              //         ],
+              //       ),
+              //       Column(
+              //         children: [
+              //           container(
+              //             onTap: (){
+              //
+              //             },
+              //             icon: Icon(Icons.padding),
+              //             text: ("-----"),
+              //           ),
+              //         ],
+              //       )
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),

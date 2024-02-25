@@ -10,6 +10,7 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../../../../generated/assets.dart';
 import '../../../resources/color_manager.dart';
+import '../../../resources/models/absesnse/absesnse_model.dart';
 import 'container_person_data.dart';
 
 
@@ -23,6 +24,47 @@ class Student_PersonalData extends StatefulWidget {
 class _Student_PersonalDataState extends State<Student_PersonalData> {
   Future<void> _refreshData(BuildContext context) async {
     AppCubit.get(context).getUserData();
+  }
+  List<DataColumn> dateList = [];
+  var averageRate;
+
+  List<Absennse_Model> filteredList = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    dateList = [];
+    // TODO: implement initState
+    super.initState();
+    var totalRate = 0.0;
+    if(AppCubit.get(context).absennse_model!=null) {
+      print(
+          'filter ed => ${AppCubit.get(context).absennse_model.where((Absennse_Model element) => element.name == AppCubit.get(context).student_model?.name).toList()}');
+      filteredList.addAll(AppCubit.get(context)
+          .absennse_model
+          .where((Absennse_Model element) =>
+              element.name?.toLowerCase() ==
+              AppCubit.get(context).student_model?.name?.toLowerCase())
+          .toList());
+      if (filteredList != null) {
+        for (var item in filteredList) {
+          var tfList = item.list_t;
+          var totalTrue = tfList?.where((element) => element == 'true').length;
+          var rate = totalTrue! / tfList!.length;
+          totalRate += rate;
+        }
+        averageRate = ((totalRate / filteredList.length) * 100).roundToDouble();
+        print('Average rate of occurrence of "true" values: $averageRate');
+if(AppCubit.get(context).absennse_model.isNotEmpty)
+        AppCubit.get(context).absennse_model[0].date!.forEach((element) {
+          print(element);
+          if (element != 'N/A')
+            dateList.add(DataColumn(
+                label: Text(
+                    '${DateTime.parse(element.toString()).month}/${DateTime.parse(element.toString()).day}')));
+          print(dateList);
+        });
+      }
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -134,7 +176,7 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
                                 AppConstants.navigateTo(context,absence_presence());
                             } ,
                             text: 'Absence',
-                            value: 70.0,
+                            value: averageRate??0.0,
                           ),
                       ),
                     ],
