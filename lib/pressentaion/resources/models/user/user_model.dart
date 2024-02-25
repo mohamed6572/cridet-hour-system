@@ -19,18 +19,18 @@ class Student_Model {
   String? gender;
   String? birthDayImage;
   String? idPhoto;
-  String? photograph;
-  String? nominationCard;
+  String? nomation_c;
+  String? nomination_Card;
   String? doneIn;
   String? studentPhone;
-  String? guardianPhone;
+  String? father_Phone;
   String? fatherName;
   String? fatherJob;
   String? recruitmentArea;
   String? tripleNumber;
   String? placeBirth;
   String? dateOfBirth;
-  String? observance;
+  String? note;
   String? orderStatus;
   String? transferStatus;
   String? transferType;
@@ -42,13 +42,12 @@ class Student_Model {
   String? sittingNumber;
   String? schoolName;
   String? receivedData;
-  String? bandDivision;
+  String? Academic_division;
   String? educationalQualification;
-  String? basicStudentData;
-  String? band;
-  bool? enrollmentStatus;
-  String? divisionInstitute;
-  String? schoolYear;
+  String? division;
+  bool? enroll_Status;
+  String? major;
+  String? year_now;
   String? soldiers_image_1;
   String? soldiers_image_2;
 
@@ -72,12 +71,12 @@ class Student_Model {
     required this.gender,
     required this.birthDayImage,
     required this.idPhoto,
-    required this.photograph,
-    required this.nominationCard,
+    required this.nomation_c,
+    required this.nomination_Card,
     required this.logOut,
     required this.doneIn,
     required this.studentPhone,
-    required this.guardianPhone,
+    required this.father_Phone,
     required this.fatherName,
     required this.fatherJob,
     required this.soldiers_image_1,
@@ -86,7 +85,7 @@ class Student_Model {
     required this.tripleNumber,
     required this.placeBirth,
     required this.dateOfBirth,
-    required this.observance,
+    required this.note,
     required this.orderStatus,
     required this.transferStatus,
     required this.transferType,
@@ -99,13 +98,12 @@ class Student_Model {
     required this.isPaid,
     required this.schoolName,
     required this.receivedData,
-    required this.bandDivision,
+    required this.Academic_division,
     required this.educationalQualification,
-    required this.basicStudentData,
-    required this.band,
-    required this.enrollmentStatus,
-    required this.divisionInstitute,
-    required this.schoolYear,
+    required this.division,
+    required this.enroll_Status,
+    required this.major,
+    required this.year_now,
   });
 
   // Factory method to create a Student object from a JSON map
@@ -133,18 +131,18 @@ class Student_Model {
       gender: json['Gender'],
       birthDayImage: json['Birth_day_Image'],
       idPhoto: json['ID_photo'],
-      photograph: json['Photograph'],
-      nominationCard: json['Nomination_card'],
+      nomation_c: json['personal_photo'],
+      nomination_Card: json['Nomination_card'],
       doneIn: json['Done_in'],
       studentPhone: json['Student_phone'],
-      guardianPhone: json['Guardian_phone'],
+      father_Phone: json['father_Phone'],
       fatherName: json['Fahther_name'],
       fatherJob: json['Father_job'],
       recruitmentArea: json['Recruitment_area'],
       tripleNumber: json['Triple_number'],
       placeBirth: json['Place_birth'],
       dateOfBirth: json['Date_of_birth'],
-      observance: json['Observance'],
+      note: json['note'],
       orderStatus: json['Order_status'],
       transferStatus: json['Transfer_status'],
       transferType: json['Transfer_type'],
@@ -156,13 +154,12 @@ class Student_Model {
       sittingNumber: json['Sitting_Number'],
       schoolName: json['School_Name'],
       receivedData: json['Received_Data'],
-      bandDivision: json['band-Division'],
+      Academic_division: json['Academic_division'],
       educationalQualification: json['Educational_Qualification'],
-      basicStudentData: json['Basic_student_data'],
-      band: json['band'],
-      enrollmentStatus: json['Enrollment_status'],
-      divisionInstitute: json['Division_Institute'],
-      schoolYear: json['school_year'],
+      division: json['division'],
+      enroll_Status: json['enroll_Status'],
+      major: json['major'],
+      year_now: json['year_now'],
     );
   }
 
@@ -188,20 +185,20 @@ class Student_Model {
       'Birth_day_Image': birthDayImage,
       'levelar': levelar,
       'ID_photo': idPhoto,
-      'Photograph': photograph,
-      'Nomination_card': nominationCard,
+      'personal_photo': nomation_c,
+      'Nomination_card': nomination_Card,
       'soldiers_image_1': soldiers_image_1,
       'soldiers_image_2': soldiers_image_2,
       'Done_in': doneIn,
       'Student_phone': studentPhone,
-      'Guardian_phone': guardianPhone,
+      'father_Phone': father_Phone,
       'Fahther_name': fatherName,
       'Father_job': fatherJob,
       'Recruitment_area': recruitmentArea,
       'Triple_number': tripleNumber,
       'Place_birth': placeBirth,
       'Date_of_birth': dateOfBirth,
-      'Observance': observance,
+      'note': note,
       'Order_status': orderStatus,
       'Transfer_status': transferStatus,
       'Transfer_type': transferType,
@@ -213,13 +210,12 @@ class Student_Model {
       'Sitting_Number': sittingNumber,
       'School_Name': schoolName,
       'Received_Data': receivedData,
-      'band-Division': bandDivision,
+      'Academic_division': Academic_division,
       'Educational_Qualification': educationalQualification,
-      'Basic_student_data': basicStudentData,
-      'band': band,
-      'Enrollment_status': enrollmentStatus,
-      'Division_Institute': divisionInstitute,
-      'school_year': schoolYear,
+      'division': division,
+      'enroll_Status': enroll_Status,
+      'major': major,
+      'year_now': year_now,
       'isPaid': isPaid,
     };
   }

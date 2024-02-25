@@ -30,11 +30,9 @@ class _Login_screenState extends State<Login_screen> {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {
-        if (state is SignInSuccesState && state is getUserSuccsesState) {
+        if (state is SignInSuccesState ) {
           AppCubit.get(context).student_model?.isApproved == false ?  AppConstants.navigateTo(context,WaitingScreen()) : AppCubit.get(context).student_model?.isPaid == false ?
           AppConstants.navigateTo(context,PaymentsDetailsView()):AppConstants.navigateToAndFinish(context,HomeScreen());
-
-
 
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

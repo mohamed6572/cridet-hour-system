@@ -27,13 +27,13 @@ Widget squad_body (index)=>Column(
   ],
 );
 Size mediaquery (context) => MediaQuery.of(context).size;
-Widget defult_container ({required Widget child,  h,mh,w,mv,ph,pv}) =>  Container(
+Widget defult_container ({required Widget child,  h,mh,w,mv,ph,pv,color}) =>  Container(
   margin: EdgeInsets.symmetric(horizontal: mh??8.0,vertical:  mv??0.0),
   padding: EdgeInsets.symmetric(horizontal: ph??8.0 ,vertical:  pv??0.0),
   height:h,
   width:w ??  double.infinity ,
   decoration: BoxDecoration(
-    color: ColorManager.white,
+    color: color??ColorManager.white,
     borderRadius: BorderRadius.circular(15.0),
     boxShadow: [
       BoxShadow(

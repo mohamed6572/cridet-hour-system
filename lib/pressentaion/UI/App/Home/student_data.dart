@@ -85,13 +85,14 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Center(
+                                Container(
+                                  width: MediaQuery.sizeOf(context).width/2.4,
                                   child: Text("${cubit.student_model!.name}",
-                                      style: Theme.of(context).textTheme.bodyMedium),
+                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16)),
                                 ),
                                 Center(
-                                  child: Text("${cubit.student_model!.level}",
-                                      style: Theme.of(context).textTheme.bodySmall),
+                                  child: Text(" ${cubit.student_model!.level}",
+                                      style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14)),
                                 ),
                               ],
                             ),

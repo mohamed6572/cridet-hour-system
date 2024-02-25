@@ -22,57 +22,63 @@ class _CoursesScreenState extends State<CoursesScreen> {
 
     cubit.GetCousrsData(context: context);
   }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     AppCubit.get(context).GetCousrsData(context: context);
   }
+
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit,AppState>(builder: (context, state) {
-      var cubit = AppCubit.get(context);
-      return Scaffold(
-        appBar: app_AppBar(context: context,text: 'Courses'),
-        body:RefreshIndicator(
-            color: ColorManager.primary,
-            onRefresh: () => _refreshData(context),
-            child: Column(
-          children: [
-            SizedBox(height: 20,),
-            Expanded(
-              child: ListView.separated(separatorBuilder: (context, index) => SizedBox(height: 20,),
-                itemCount: cubit.CourseLinkList.length,
-              
-                itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: ()async{
-                    final Uri _url = Uri.parse('${cubit.CourseLinkList[index].Link}');
+    return BlocConsumer<AppCubit, AppState>(
+      builder: (context, state) {
+        var cubit = AppCubit.get(context);
+        return Scaffold(
+          appBar: app_AppBar(context: context, text: 'Courses'),
+          body: RefreshIndicator(
+              color: ColorManager.primary,
+              onRefresh: () => _refreshData(context),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Expanded(
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: 20,
+                      ),
+                      itemCount: cubit.CourseLinkList.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () async {
+                            final Uri _url = Uri.parse(
+                                '${cubit.CourseLinkList[index].Link}');
 
-                    if (!await launchUrl(_url)) {
-                    throw Exception('Could not launch $_url');
-                    }
-
-                  },
-                  child: defult_container(
-              
-              
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Image.asset(Assets.imagesMe,height: 150,),
-                           SizedBox(width: 10,),
-                          Text('${cubit.CourseLinkList[index].name}',style: Theme.of(context).textTheme.bodyMedium,textAlign: TextAlign.start,)
-                        ],
-                      ),pv: 10.0),
-                );
-              },),
-            )
-          ],
-        )),
-      );
-    }, listener: (context, state) {
-
-    },);
+                            if (!await launchUrl(_url)) {
+                              throw Exception('Could not launch $_url');
+                            }
+                          },
+                          child: defult_container(
+                              w: double.infinity,
+                              ph: 10.0,
+                              child: Text(
+                                '${cubit.CourseLinkList[index].name}',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                                textAlign: TextAlign.start,
+                              ),
+                              pv: 10.0),
+                        );
+                      },
+                    ),
+                  )
+                ],
+              )),
+        );
+      },
+      listener: (context, state) {},
+    );
   }
 }

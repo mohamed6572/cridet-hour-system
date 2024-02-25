@@ -5,31 +5,78 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:photo_view/photo_view.dart';
 
+import '../../../resources/color_manager.dart';
 import '../../../resources/custom_widgets/custom_widget.dart';
+import '../../../resources/values_manager.dart';
 
-class BookScreen extends StatelessWidget {
+class BookScreen extends StatefulWidget {
   const BookScreen({Key? key}) : super(key: key);
 
   @override
+  State<BookScreen> createState() => _BookScreenState();
+}
+
+class _BookScreenState extends State<BookScreen> {
+  Future<void> _refreshData(BuildContext context) async {
+    final cubit = AppCubit.get(context);
+
+    cubit.Get_Subject_FirstGrad(context: context);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    AppCubit.get(context).Get_Subject_FirstGrad(context: context);
+  }
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit,AppState>(builder: (context, state) {
+      var cubit =AppCubit.get(context);
       return Scaffold(
         appBar: app_AppBar(context: context,text: 'Books'),
-        body: Column(
-          children: [
-            SizedBox(height: 20,),
-            defult_container(
+        body: RefreshIndicator(
+            color: ColorManager.primary,
+            onRefresh: () => _refreshData(context),
+            child:state is GetSubject_firstGrad_LoadingState ? Center(child: CircularProgressIndicator(),) :Column(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: GridView.builder(
 
 
-                child: Row(
-                  children: [
-                    Image.asset(Assets.imagesMe,height: 100,),
-                    SizedBox(width: 20,),
-                    Text('Physics')
-                  ],
-                ),pv: 10.0,ph: 15.0)
-          ],
-        ),
+                    itemCount: cubit.firstGrade_subjects.length,
+                    itemBuilder: (context, index) {
+                      return defult_container(
+                          w: double.infinity,
+                          color:  ColorManager.primary,
+                          ph: 10.0,
+                          child: Center(
+                            child: Text(
+                              '${cubit.firstGrade_subjects[index].nameSubject}',
+                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ColorManager.white),
+                              textAlign: TextAlign.start,
+                              maxLines: 1,
+                            ),
+                          ),
+                          pv: 10.0);
+                    }, padding: EdgeInsets.all(AppPadding.p4),
+                    physics: BouncingScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.7,
+                      mainAxisSpacing: 15.0,
+                      crossAxisSpacing: 5.0,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            )),
       );
     }, listener: (context, state) {
 

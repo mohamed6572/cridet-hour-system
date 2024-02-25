@@ -21,6 +21,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../pressentaion/resources/models/courses/courses_model.dart';
 import '../../pressentaion/resources/models/last_exam_image_model/last_exam_image_model.dart';
+import '../../pressentaion/resources/models/subject_model/subject_model.dart';
 import '../../pressentaion/resources/models/tableImage_model/tableImage_model.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -142,8 +143,7 @@ void ChangeCard(index){
     required context,
     required String approvalDate,
     required String band,
-    required String bandDivision,
-    required String basicStudentData,
+    required String Academic_division,
     required String birthDayImage,
     required String cardIssuingParty,
     required String dateOfBirth,
@@ -155,29 +155,28 @@ void ChangeCard(index){
     required String fatherName,
     required String gender,
     required double gpa,
-    required String guardianPhone,
+    required String father_Phone,
     required String idCardNumber,
     required String idPhoto,
     required String image,
     required bool military,
     required String name,
     required String nominationCard,
-    required String observance,
+    required String note,
     required String orderStatus,
     required String partyTransferred,
     required String phone,
-    required String photograph,
     required String placeBirth,
     required String receivedData,
     required String recruitmentArea,
     required String schoolName,
-    required String schoolYear,
+    required String year_now,
     required String sittingNumber,
     required String studentAddress,
     required String studentPhone,
     required String soldiers_image_1,
     required String soldiers_image_2,
-    required bool? enrollmentStatus,
+    required bool? enroll_Status,
     required String transferStatus,
     required String transferType,
     required String tripleNumber,
@@ -228,40 +227,39 @@ void ChangeCard(index){
               soldiers_image_2: downloadUrls[5],
               absence: {},
               approvalDate: approvalDate,
-              band: band,
-              bandDivision: bandDivision,
-              basicStudentData: basicStudentData,
+              division: band,
+              nomation_c: '',
+              major: 'Computer Sience',
               birthDayImage: downloadUrls[3],
               bookList: [],
               cardIssuingParty: cardIssuingParty,
               dateOfBirth: dateOfBirth,
               degreeTotal: degreeTotal,
-              divisionInstitute: divisionInstitute,
+              Academic_division: Academic_division,
               doneIn: doneIn,
               educationalQualification: educationalQualification,
-              enrollmentStatus: enrollmentStatus,
+              enroll_Status: enroll_Status,
               fatherJob: fatherJob,
               fatherName: fatherName,
               gender: gender,
               gpa: gpa,
-              guardianPhone: guardianPhone,
+              father_Phone: father_Phone,
               idCardNumber: idCardNumber,
               idPhoto: downloadUrls[2],
               image: downloadUrls[0],
               level: 'First Garde',
               military: military,
               name: name,
-              nominationCard: nominationCard,
-              observance: observance,
+              note: note,
               orderStatus: orderStatus,
               partyTransferred: partyTransferred,
               phone: phone,
-              photograph: downloadUrls[1],
+              nomination_Card: downloadUrls[1],
               placeBirth: placeBirth,
               receivedData: receivedData,
               recruitmentArea: recruitmentArea,
               schoolName: schoolName,
-              schoolYear: schoolYear,
+              year_now: year_now,
               isApproved: false,
               sittingNumber: sittingNumber,
               studentAddress: studentAddress,
@@ -560,10 +558,11 @@ void ChangeCard(index){
     }
   }
 
-
+  List<dynamic> Warning_List = [];
   Student_Model? student_model;
   // Function to get user data from Firestore
   void getUserData() async {
+    Warning_List = [];
     emit(getUserLoadingState());
     print('get data');
     try {
@@ -576,6 +575,10 @@ void ChangeCard(index){
         if (snapshot.exists) {
           student_model = Student_Model.fromJson(snapshot.data()!);
           print(student_model?.email);
+          student_model?.warning?.forEach((element) {
+            Warning_List.add(element);
+          });
+
           print(snapshot.data());
           emit(getUserSuccsesState());
           // If the document exists, create a Student object from the data
@@ -755,7 +758,7 @@ void ChangeCard(index){
 
 
     emit(Get_ImportantNews_LoadingState());
-    print('get imprtant iamge');
+    print('get imprtant news');
     try {
       var map = await _firestore.collection("ImportantNews_Images").get();
       map.docs.forEach((element) {
@@ -818,5 +821,48 @@ void ChangeCard(index){
       return null; // Return null in case of an error
     }
   }
+  Future<void> Get_Subject_FirstGrad({
+    required context,
+
+  }) async {
+    emit(GetSubject_firstGrad_LoadingState());
+    print('Get subject data');
+    firstGrade_subjects=[];
+    try {
+      var map =  await  _firestore
+          .collection("Subjects_FirstGrad")
+          .get();
+      firstGrade_subjects=[];
+      map.docs.forEach((element) {
+        firstGrade_subjects.add(Subject_Model.fromJson(element.data()));
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: ColorManager.green,
+          content: Text(
+            textAlign: TextAlign.center,
+            'Done ',
+            style: Theme.of(context)
+                .textTheme
+                .titleSmall!
+                .copyWith(color: Colors.white),
+          ),
+          duration: Duration(seconds: 3),
+        ),
+      );
+      emit(GetSubject_firstGrad_SuccsesState());
+
+
+
+
+    }  catch (e) {
+
+      print(e.toString());
+      emit(GetSubject_firstGrad_ErrorState());
+
+      return null;
+    }
+  }
+  List<Subject_Model> firstGrade_subjects = [];
 
 }

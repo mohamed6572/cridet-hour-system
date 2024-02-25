@@ -85,3 +85,9 @@ class Get_ImportantNews_LoadingState extends AppState {}
 class Get_ImportantNews_SuccsesState extends AppState {}
 class Get_ImportantNews_ErrorState extends AppState {}
 
+//get first grade subject
+
+class GetSubject_firstGrad_LoadingState extends AppState {}
+class GetSubject_firstGrad_SuccsesState extends AppState {}
+class GetSubject_firstGrad_ErrorState extends AppState {}
+

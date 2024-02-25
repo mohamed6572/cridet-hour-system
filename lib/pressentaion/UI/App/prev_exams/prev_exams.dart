@@ -40,62 +40,69 @@ class _Prev_Exmas_ScreenState extends State<Prev_Exmas_Screen> {
             fallback: (context) => Center(child: state is Get_Last_Exam_LoadingState ? CircularProgressIndicator() : Text('لايوجد صور بعد'),),
             condition:cubit.last_examImages.isNotEmpty,
             builder: (context) {
-              return ListView.builder(
-                itemCount: cubit.last_examImages.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      SizedBox(height: 20,),
-                      InkWell(
-                        onTap: (){
-                          showDialog(
-                            context: context,
-                            barrierDismissible: true,
-                            builder: (context) => Dialog(
-                              child: PhotoView(
-                                initialScale: PhotoViewComputedScale.contained * 0.9,
-                                imageProvider: NetworkImage(cubit.last_examImages[index].url!,),
+              return Padding(
+                padding: const EdgeInsets.only(bottom:18.0),
+                child: ListView.builder(
+                  itemCount: cubit.last_examImages.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        SizedBox(height: 20,),
+                        InkWell(
+                          onTap: (){
+                            showDialog(
+                              context: context,
+                              barrierDismissible: true,
+                              builder: (context) => Dialog(
+                                child: PhotoView(
+                                  initialScale: PhotoViewComputedScale.contained * 0.9,
+                                  imageProvider: NetworkImage(cubit.last_examImages[index].url!,),
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        child: defult_container(
+                            );
+                          },
+                          child: defult_container(
 
 
-                            child:  Stack(
-                              children: [
-                                Center(
-                                    child: Image.network(
-                                      cubit.last_examImages[index].url!,
-                                      height: 200,
-                                    )),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Row(
-                                    children: [
-                                      InkWell(
-                                        onTap:(){
-                                          cubit.download_Image(context: context,imageUrl: cubit.last_examImages[index].url!);
-                                        },
-                                        child: Container(
-                                          height: 40,
-                                          width: 40,
-                                          decoration: BoxDecoration(
-                                              color: ColorManager.primary,
-                                              shape: BoxShape.circle),
-                                          child:state is Download_Image_LodingState ? Center(child: CircularProgressIndicator(color: ColorManager.white),) : Icon(Icons.download_outlined,color: ColorManager.white,size: 24,),
+                              child:  Stack(
+                                children: [
+                                  Center(
+                                      child: Image.network(
+                                        cubit.last_examImages[index].url!,
+                                        height: 200,
+                                      )),
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Row(
+                                      children: [
+                                        InkWell(
+                                          onTap:(){
+                                            cubit.download_Image(context: context,imageUrl: cubit.last_examImages[index].url!);
+                                          },
+                                          child: Container(
+                                            height: 40,
+                                            width: 40,
+                                            decoration: BoxDecoration(
+                                                color: ColorManager.primary,
+                                                shape: BoxShape.circle),
+                                            child:state is Download_Image_LodingState ? Center(child: CircularProgressIndicator(color: ColorManager.white),) : Icon(Icons.download_outlined,color: ColorManager.white,size: 24,),
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),pv: 10.0),
-                      )
-                    ],
-                  );
-                },
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),pv: 10.0),
 
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    );
+                  },
+
+                ),
               );
             },
           ))

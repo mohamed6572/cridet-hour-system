@@ -2,6 +2,7 @@ import 'package:cridet_hour_system/app/cubit/cubit.dart';
 import 'package:cridet_hour_system/app/cubit/state.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/Register/register_container.dart';
 import 'package:cridet_hour_system/pressentaion/UI/App/login/login.dart';
+import 'package:cridet_hour_system/pressentaion/UI/App/waitingScreen/waiting_screen.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/strings_manager.dart';
@@ -29,7 +30,8 @@ class _RegisterState extends State<Register> {
   var formkey = GlobalKey<FormState>();
   var controlr_FullName = TextEditingController();
   var controlr_SchoolYear = TextEditingController();
-  var controlr_DivisionInstitute = TextEditingController();
+  var controlr_major = TextEditingController();
+
   var controlr_Band = TextEditingController();
   var controlr_EducationalQualification = TextEditingController();
   var controlr_Division = TextEditingController();
@@ -68,7 +70,7 @@ class _RegisterState extends State<Register> {
       body: BlocConsumer<AppCubit, AppState>(
         listener: (context, state) {
           if (state is RegisterSuccesState) {
-            //AppConstants.navigateToAndFinish(context, HomeScreen());
+            AppConstants.navigateToAndFinish(context, WaitingScreen());
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text(
@@ -174,9 +176,9 @@ class _RegisterState extends State<Register> {
                                           }),
                                       TextField(
                                           text: AppStrings
-                                              .signUp_DivisionInstitute,
+                                              .signUp_major,
                                           controller:
-                                              controlr_DivisionInstitute,
+                                              controlr_major,
                                           validator: (text) {
                                             if (text == null || text.isEmpty) {
                                               return '${AppStrings.validate_message_signUp}';
@@ -203,7 +205,7 @@ class _RegisterState extends State<Register> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            AppStrings.signUp_Enrollmentstatus,
+                                            AppStrings.signUp_Registration_Status,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .displayLarge,
@@ -787,6 +789,7 @@ class _RegisterState extends State<Register> {
                                         children: [
                                           TextButton(
                                             onPressed: () {
+                                              controlr_major.text = 'Computer Science';
                                               print(controlr_EmailAddress.text);
                                               if (formkey.currentState
                                                       ?.validate() ==
@@ -802,12 +805,10 @@ class _RegisterState extends State<Register> {
                                                         controlr_ApprovalDate
                                                             .text,
                                                     band: controlr_Band.text,
-                                                    bandDivision:
-                                                        controlr_Division.text,
-                                                    enrollmentStatus:
+                                                  Academic_division: controlr_major.text,
+                                                    enroll_Status:
                                                         isEnrollmentstatus,
-                                                    basicStudentData:
-                                                        'basicStudentData',
+
                                                     birthDayImage:
                                                         'birthDayImage',
                                                     cardIssuingParty:
@@ -823,7 +824,7 @@ class _RegisterState extends State<Register> {
                                                     degreeTotal:
                                                         controlr_Total.text,
                                                     divisionInstitute:
-                                                        controlr_DivisionInstitute
+                                                    controlr_major
                                                             .text,
                                                     doneIn:
                                                         controlr_Donein.text,
@@ -840,7 +841,7 @@ class _RegisterState extends State<Register> {
                                                         ? 'Male'
                                                         : 'False',
                                                     gpa: 0.0,
-                                                    guardianPhone:
+                                                    father_Phone:
                                                         controlr_Guardianphone
                                                             .text,
                                                     idCardNumber:
@@ -850,16 +851,15 @@ class _RegisterState extends State<Register> {
                                                     military: isGender,
                                                     name: controlr_FullName.text,
                                                     nominationCard: 'nominationCard',
-                                                    observance: controlr_Observance.text,
+                                                    note: controlr_Observance.text,
                                                     orderStatus: controlr_Orderstatus.text,
                                                     partyTransferred: controlr_PartyTransferred.text,
                                                     phone: controlr_Studentphone.text,
-                                                    photograph: 'photograph',
                                                     placeBirth: controlr_PlaceOfBirth.text,
                                                     receivedData: controlr_ReceivedData.text,
                                                     recruitmentArea: controlr_Recruitmentarea.text,
                                                     schoolName: controlr_SchoolName.text,
-                                                    schoolYear: controlr_SchoolYear.text,
+                                                    year_now: controlr_SchoolYear.text,
                                                     sittingNumber: controlr_SittingNumber.text,
                                                     studentAddress: controlr_Studentaddress.text,
                                                     studentPhone: controlr_Studentphone.text,
@@ -868,7 +868,7 @@ class _RegisterState extends State<Register> {
                                                     tripleNumber: controlr_TripleNumberRecruitment.text);
                                               }
                                             },
-                                            child: Text(
+                                            child:state is  RegisterLosingState ? Center(child: CircularProgressIndicator(),): Text(
                                               AppStrings.signUp_Registration,
                                               style: Theme.of(context)
                                                   .textTheme
@@ -900,6 +900,7 @@ class _RegisterState extends State<Register> {
       Container(
         margin: EdgeInsets.symmetric(vertical: 15),
         child: TextFormField(
+
           decoration: InputDecoration(
             hintText: text,
           ),

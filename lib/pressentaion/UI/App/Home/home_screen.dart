@@ -15,8 +15,10 @@ import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart
 import 'package:cridet_hour_system/pressentaion/resources/custom_widgets/custom_widget.dart';
 import 'package:cridet_hour_system/pressentaion/resources/models/user/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../bookscreen/bookscreen.dart';
 import '../importantNews/importantNews.dart';
@@ -161,62 +163,85 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: InkWell(
-                      onTap:(){
-
-                      },
-                      child:Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.logout,
-                            color: Colors.red,
-                            size: 25,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "Log out",
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-
-
-                        ],
-                      ),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: EdgeInsets.all(10),
+                  //   child: InkWell(
+                  //     onTap:(){
+                  //
+                  //     },
+                  //     child:Row(
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         Icon(
+                  //           Icons.logout,
+                  //           color: Colors.red,
+                  //           size: 25,
+                  //         ),
+                  //         SizedBox(
+                  //           width: 5,
+                  //         ),
+                  //         Text(
+                  //           "Log out",
+                  //           style: Theme.of(context).textTheme.titleLarge,
+                  //         ),
+                  //
+                  //
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(height:200,),
                   Padding(
                     padding:EdgeInsets.all(12),
-                    child: InkWell(
-                      onTap:(){},
-                      child:Row(
-                        mainAxisAlignment:MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(
+                    child: Row(
+                      mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                      children: [
+                        InkWell(
+                          onTap: () async {
+                            final Uri _url = Uri.parse(
+                                'https://www.facebook.com/Himit2018');
+
+                            if (!await launchUrl(_url)) {
+                              throw Exception('Could not launch $_url');
+                            }
+                          },
+                          child: Icon(
                             Icons.facebook_rounded,
                             color: Colors.white,
                           ),
-                          Icon(
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            final Uri _url = Uri.parse(
+                                'https://www.youtube.com/watch?v=6mttoWXoqOU&list=PLgxZ0iwvK8rc5mawQkFp9BqMyMcihFcAZ&pp=iAQB');
+
+                            if (!await launchUrl(_url)) {
+                              throw Exception('Could not launch $_url');
+                            }
+                          },
+                          child: Icon(
                             Icons.smart_display_rounded,
                             color: ColorManager.error,
                             size: 25,
                           ),
-                          Icon(
-                            Icons.chat,
-                            color: ColorManager.white,
-                            size: 25,
-                          ),
-                          Icon(
+                        ),
+                      
+                        InkWell(
+                          onTap: () async {
+                            final Uri _url = Uri.parse(
+                                'https://himit-kfs.com/?fbclid=IwAR2dsMkEqlaXN2O3ISXI5WX26E_s5DiuvkkagohkphN3yT7hVXGE3PmFp0E');
+
+                            if (!await launchUrl(_url)) {
+                              throw Exception('Could not launch $_url');
+                            }
+                          },
+                          child: Icon(
                             Icons.web,
                             color: ColorManager.white,
                             size: 25,
-                          )
-                        ],
-                      ),
+                          ),
+                        )
+                      ],
                     ),
                   )
                 ],
@@ -280,13 +305,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Center(
+                              Container(
+                                width: MediaQuery.sizeOf(context).width/2.4,
                                 child: Text("${cubit.student_model!.name}",
-                                    style: Theme.of(context).textTheme.bodyMedium),
+                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16)),
                               ),
                               Center(
-                                child: Text("${cubit.student_model!.level}",
-                                    style: Theme.of(context).textTheme.bodySmall),
+                                child: Text(" ${cubit.student_model!.level}",
+                                    style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14)),
                               ),
                             ],
                           ),
@@ -323,14 +349,24 @@ class _HomeScreenState extends State<HomeScreen> {
                               child:Padding(
                                 padding: const EdgeInsets.all(20.0),
                                 child: Container(
-                                  height: mediaquery(context).height/3,
+                                  height: mediaquery(context).height/2,
 
                                   child: SingleChildScrollView(
                                     child:Column(
                                       children: [
                                         Icon(Icons.warning_amber,color: ColorManager.error,),
                                         SizedBox(height: 20,),
-                                        Text("hello please go to check your properties",textAlign: TextAlign.center,),
+                                        Directionality(
+                                          textDirection: TextDirection.rtl,
+                                          child: Container(
+
+                                            height: mediaquery(context).height/2.6,
+                                            child: ListView.separated(
+                                              separatorBuilder: (context, index) => Divider(),
+                                              itemCount: cubit.Warning_List.length,
+                                              itemBuilder: (context, index) => Text("${cubit.Warning_List[index]}",textAlign: TextAlign.start,),),
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ),
