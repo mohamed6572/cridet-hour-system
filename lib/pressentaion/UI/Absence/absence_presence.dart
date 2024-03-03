@@ -73,20 +73,23 @@ class _absence_presenceState extends State<absence_presence> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            width:75,
+                            width:160,
       
                             height: mediaquery(context).height-50,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('Subects',style: Theme.of(context).textTheme.bodySmall,),
+                                Divider(
+
+                                ),
                                 Expanded(
                                   child: ListView.builder(
                                     itemCount: filteredList.length,
                                     itemBuilder: (context, index) {
                                       return Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 15.0),
+                                            vertical: 9.0),
                                         child: Column(
                                           mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -94,10 +97,10 @@ class _absence_presenceState extends State<absence_presence> {
                                           CrossAxisAlignment.start,
                                           children: [
                                             Text('${filteredList[index].uid}',style: Theme.of(context).textTheme.bodySmall,),
-                                            // if (index < _data.length-1)
-                                            // Divider(
-                                            //   height: 25,
-                                            // )
+
+                                            Divider(
+height: 10,
+                                            )
                                           ],
                                         ),
                                       );

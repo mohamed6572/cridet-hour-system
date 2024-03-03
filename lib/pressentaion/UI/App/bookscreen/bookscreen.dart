@@ -1,6 +1,7 @@
 import 'package:cridet_hour_system/app/cubit/cubit.dart';
 import 'package:cridet_hour_system/app/cubit/state.dart';
 import 'package:cridet_hour_system/generated/assets.dart';
+import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:photo_view/photo_view.dart';
@@ -8,6 +9,7 @@ import 'package:photo_view/photo_view.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/custom_widgets/custom_widget.dart';
 import '../../../resources/values_manager.dart';
+import 'PDFViewer.dart';
 
 class BookScreen extends StatefulWidget {
   const BookScreen({Key? key}) : super(key: key);
@@ -49,19 +51,24 @@ class _BookScreenState extends State<BookScreen> {
 
                     itemCount: cubit.firstGrade_subjects.length,
                     itemBuilder: (context, index) {
-                      return defult_container(
-                          w: double.infinity,
-                          color:  ColorManager.primary,
-                          ph: 10.0,
-                          child: Center(
-                            child: Text(
-                              '${cubit.firstGrade_subjects[index].nameSubject}',
-                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ColorManager.white),
-                              textAlign: TextAlign.start,
-                              maxLines: 1,
+                      return InkWell(
+                        onTap: (){
+                          AppConstants.navigateTo(context, PDFViewer_Screen('${cubit.firstGrade_subjects[index].nameSubject}'));
+                        },
+                        child: defult_container(
+                            w: double.infinity,
+                            color:  ColorManager.primary,
+                            ph: 10.0,
+                            child: Center(
+                              child: Text(
+                                '${cubit.firstGrade_subjects[index].nameSubject}',
+                                style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ColorManager.white),
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                              ),
                             ),
-                          ),
-                          pv: 10.0);
+                            pv: 10.0),
+                      );
                     }, padding: EdgeInsets.all(AppPadding.p4),
                     physics: BouncingScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
