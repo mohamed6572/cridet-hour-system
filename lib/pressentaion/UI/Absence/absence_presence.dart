@@ -79,7 +79,7 @@ class _absence_presenceState extends State<absence_presence> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Subects',style: Theme.of(context).textTheme.bodySmall,),
+                                Text('Subjects',style: Theme.of(context).textTheme.bodySmall,),
                                 Divider(
 
                                 ),

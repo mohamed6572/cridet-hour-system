@@ -268,7 +268,7 @@ void ChangeCard(index){
               transferStatus: transferStatus,
               transferType: transferType,
               tripleNumber: tripleNumber,
-              warning: [], levelar: 'الفرقة الاولى');
+              warning: [], levelar: 'الفرقة الاولى', subjects: []);
           // Get the UID of the newly registered user
 
           // Save additional user data to Firestore
@@ -917,5 +917,39 @@ void ChangeCard(index){
 
       return null;
     }
+  }
+
+  double totalGPA = 0.0;
+  void calculateGPA(List<Subject_Model> grades) {
+
+    int totalSubjects = grades.length;
+    double totalGradePoints = 0.0;
+    // Define a grading scale
+    Map<double, double> gradingScale = {
+      90.0: 4.0,
+      85.0: 3.7,
+      80.0: 3.3,
+      75.0: 3.0,
+      70.0: 2.7,
+      65.0: 2.3,
+      60.0: 2.0,
+      55.0: 1.7,
+      50.0: 1.3,
+      0.0: 0.0,
+    };
+
+    // Calculate total grade points
+    grades.forEach((SelectElement) {
+      totalGradePoints += (gradingScale[SelectElement.grade] ?? 0);
+      print(totalGradePoints);
+    });
+
+    // Calculate GPA
+    double gpa = totalGradePoints / totalSubjects;
+    print(gpa);
+    // Round GPA to two decimal places
+    totalGPA =  double.parse(gpa.toStringAsFixed(2));
+    print(totalGPA);
+    emit(CalculateGPAState());
   }
 }

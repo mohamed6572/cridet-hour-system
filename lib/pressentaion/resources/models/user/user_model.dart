@@ -1,3 +1,5 @@
+import '../subject_model/subject_model.dart';
+
 class Student_Model {
   String? name;
   String? image;
@@ -15,6 +17,7 @@ class Student_Model {
   Map<String, dynamic>? absence;
   List<String>? warning;
   List<String>? bookList;
+  List<Subject_Model>? subjects;
   String? studentAddress;
   String? gender;
   String? birthDayImage;
@@ -90,6 +93,7 @@ class Student_Model {
     required this.transferStatus,
     required this.transferType,
     required this.approvalDate,
+    required this.subjects,
     required this.partyTransferred,
     required this.cardIssuingParty,
     required this.idCardNumber,
@@ -126,6 +130,9 @@ class Student_Model {
       level: json['Level'],
       absence: json['Absence'],
       warning: List<String>.from(json['Warning']),
+      subjects: (json['subjects'] as List<dynamic>?)
+          ?.map((subjectJson) => Subject_Model.fromJson(subjectJson))
+          .toList(),
       bookList: List<String>.from(json['Book_List']),
       studentAddress: json['Student_Address'],
       gender: json['Gender'],
@@ -169,6 +176,7 @@ class Student_Model {
       'Name': name,
       'Image': image,
       'GPA': gpa,
+      'subjects': subjects,
       'ID': id,
       'isApproved': isApproved,
       'Password': password,

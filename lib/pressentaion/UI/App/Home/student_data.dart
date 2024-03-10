@@ -11,6 +11,7 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 import '../../../../generated/assets.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/models/absesnse/absesnse_model.dart';
+import '../../gpa_screen/gpa_screen.dart';
 import 'container_person_data.dart';
 
 
@@ -165,14 +166,18 @@ if(AppCubit.get(context).absennse_model.isNotEmpty)
                     children: [
                       Expanded(
                         child: progres_widget(
-                          text: 'GPA',
+                          onTap:(){
+
+                            AppConstants.navigateTo(context,GPA_Screen());
+                          } ,
+                          text: 'GPA',total: 4.0,
                           value: cubit.student_model!.gpa!,
                         ),
                       ),
                          Expanded(
                           child: progres_widget(
                             onTap:(){
-                              print('object');
+
                                 AppConstants.navigateTo(context,absence_presence());
                             } ,
                             text: 'Absence',
@@ -225,7 +230,7 @@ if(AppCubit.get(context).absennse_model.isNotEmpty)
 );
   }
 
-  Widget progres_widget({required double value, text, onTap}) =>
+  Widget progres_widget({required double value, text,total, onTap}) =>
       defult_container(
           child: InkWell(
             onTap:onTap,
@@ -237,7 +242,7 @@ if(AppCubit.get(context).absennse_model.isNotEmpty)
                   child: SfRadialGauge(axes: <RadialAxis>[
                     RadialAxis(
                       minimum: 0,
-                      maximum: 100,
+                      maximum: total??100,
                       showLabels: false,
                       showTicks: false,
                       axisLineStyle: AxisLineStyle(

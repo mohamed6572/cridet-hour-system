@@ -94,4 +94,5 @@ class GetSubject_firstGrad_ErrorState extends AppState {}
 class Get_absence_LoadingState extends AppState {}
 class Get_absence_SuccsesState extends AppState {}
 class Get_absence_ErrorState extends AppState {}
+class CalculateGPAState extends AppState {}
 
