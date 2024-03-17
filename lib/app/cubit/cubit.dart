@@ -22,6 +22,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import '../../pressentaion/resources/models/absesnse/absesnse_model.dart';
 import '../../pressentaion/resources/models/courses/courses_model.dart';
 import '../../pressentaion/resources/models/last_exam_image_model/last_exam_image_model.dart';
+import '../../pressentaion/resources/models/result/result_model.dart';
 import '../../pressentaion/resources/models/subject_model/subject_model.dart';
 import '../../pressentaion/resources/models/tableImage_model/tableImage_model.dart';
 
@@ -268,7 +269,7 @@ void ChangeCard(index){
               transferStatus: transferStatus,
               transferType: transferType,
               tripleNumber: tripleNumber,
-              warning: [], levelar: 'الفرقة الاولى', subjects: []);
+              warning: [], levelar: 'الفرقة الاولى',last_subject: [], subjects: [], if_pass: false);
           // Get the UID of the newly registered user
 
           // Save additional user data to Firestore
@@ -579,7 +580,7 @@ void ChangeCard(index){
           student_model?.warning?.forEach((element) {
             Warning_List.add(element);
           });
-
+       Get_Result(grade: student_model?.levelar);
           print(snapshot.data());
           emit(getUserSuccsesState());
           // If the document exists, create a Student object from the data
@@ -864,7 +865,36 @@ void ChangeCard(index){
       return null;
     }
   }
+
+  Future<void> Get_All_Subject() async {
+    emit(GetSubject_All_LoadingState());
+    print('Get all subject data');
+    firstGrade_subjects=[];
+    try {
+      var map =  await  _firestore
+          .collection("Subjects")
+          .get();
+      all_subjects=[];
+      map.docs.forEach((element) {
+        all_subjects.add(Subject_Model.fromJson(element.data()));
+      });
+
+      print('get all subject');
+      emit(GetSubject_All_SuccsesState());
+
+
+
+
+    }  catch (e) {
+
+      print(e.toString());
+      emit(GetSubject_All_ErrorState());
+
+      return null;
+    }
+  }
   List<Subject_Model> firstGrade_subjects = [];
+  List<Subject_Model> all_subjects = [];
   List<Absennse_Model> absennse_model =[];
   Future<void> Get_Absence({
     required context,
@@ -890,20 +920,7 @@ void ChangeCard(index){
         });
 
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: ColorManager.green,
-            content: Text(
-              textAlign: TextAlign.center,
-              'Done ',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall!
-                  .copyWith(color: Colors.white),
-            ),
-            duration: Duration(milliseconds: 300),
-          ),
-        );
+
       });
       emit(Get_absence_SuccsesState());
 
@@ -918,15 +935,74 @@ void ChangeCard(index){
       return null;
     }
   }
+  List<ResultDataModel> reuslts = [];
 
+  Future<void> Get_Result({required grade}) async {
+    emit(getResult_LoadingState());
+    print('get result data');
+    try {
+      reuslts = [];
+      await FirebaseFirestore.instance.collection("exam_results").doc('$grade').get().then((value){
+        value.data()!.forEach((key, value1) {
+          print(key);
+          if(key == 'grades')
+            reuslts.add(ResultDataModel.fromJson(value1[0]));
+        });
+       reuslts.forEach((element) {
+          if(element.name==student_model?.name){
+           calculateGPA(grades:student_model!.subjects!, result:element.grades! );
+          }
+        });
+        emit(getResult_SuccsesState());
+      });
+      print(reuslts[0].name);
+
+    } catch (e) {
+      print(e.toString());
+      emit(getResult_ErrorState());
+      return null; // Return null in case of an error
+    }
+  }
+  Future<void> Update_Subjects({required List<Subject_Model> sub,required uid}) async {
+    emit(UpdateSubject_LoadingState());
+    print('update subject data');
+    try {
+      final List<Map<String, dynamic>> subMaps = sub.map((subject) => subject.toJson()).toList();
+
+      await FirebaseFirestore.instance.collection("students").doc('$uid').update({
+        'subjects' : subMaps,
+        'isPaid' : false,
+        'if_pass' :false
+      }).then((value){
+
+
+        emit(UpdateSubject_SuccsesState());
+      });
+
+
+    } catch (e) {
+      print(e.toString());
+      emit(UpdateSubject_ErrorState());
+      return null; // Return null in case of an error
+    }
+  }
   double totalGPA = 0.0;
-  void calculateGPA(List<Subject_Model> grades) {
-
+  List<dynamic> totalh =[];
+  List<dynamic> totalg =[];
+  List<dynamic> multipliedList = [];
+  void calculateGPA({required List<Subject_Model> grades,required List<Map<String,dynamic>> result}) {
+    totalh =[];
+    totalg =[];
+    multipliedList = [];
     int totalSubjects = grades.length;
     double totalGradePoints = 0.0;
+    double totalPoints = 0.0;
+    double total_hours = 0.0;
     // Define a grading scale
     Map<double, double> gradingScale = {
+      100.0: 4.0,
       90.0: 4.0,
+      95.0: 4.0,
       85.0: 3.7,
       80.0: 3.3,
       75.0: 3.0,
@@ -940,16 +1016,37 @@ void ChangeCard(index){
 
     // Calculate total grade points
     grades.forEach((SelectElement) {
-      totalGradePoints += (gradingScale[SelectElement.grade] ?? 0);
-      print(totalGradePoints);
+      total_hours +=double.parse(SelectElement.hours!);
+      totalh.add(double.parse(SelectElement.hours!));
+      print('total hours :${total_hours}');
+    });
+    result.forEach((element) {
+      totalg.add((gradingScale[element['grade']] ?? 0));
+      totalGradePoints += (gradingScale[element['grade']] ?? 0);
+      print('total GradePoints :${totalGradePoints}');
     });
 
+    if (totalh.length == totalg.length) {
+      // Loop through each element in the lists
+      for (int i = 0; i < totalh.length; i++) {
+        // Multiply corresponding elements and add to the new list
+        multipliedList.add(totalh[i] * totalg[i]);
+      }
+    } else {
+      // Handle the case where the lists have different lengths
+      print("Lists have different lengths.");
+    }
+    multipliedList.forEach((element) {
+      totalPoints += double.parse('$element');
+      print('total points : $totalPoints');
+    });
     // Calculate GPA
-    double gpa = totalGradePoints / totalSubjects;
-    print(gpa);
+    double gpa = totalPoints / total_hours;
+    print('gpa ${gpa}');
     // Round GPA to two decimal places
     totalGPA =  double.parse(gpa.toStringAsFixed(2));
     print(totalGPA);
     emit(CalculateGPAState());
   }
+
 }

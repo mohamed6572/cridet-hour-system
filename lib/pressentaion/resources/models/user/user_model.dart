@@ -12,12 +12,14 @@ class Student_Model {
   bool? military;
   bool? isApproved;
   bool? isPaid;
+  bool? if_pass;
   bool? logOut;
   String? level;
   Map<String, dynamic>? absence;
   List<String>? warning;
   List<String>? bookList;
   List<Subject_Model>? subjects;
+  List<dynamic>? last_subject;
   String? studentAddress;
   String? gender;
   String? birthDayImage;
@@ -64,6 +66,7 @@ class Student_Model {
     required this.isApproved,
     required this.phone,
     required this.email,
+    required this.if_pass,
     required this.levelar,
     required this.military,
     required this.level,
@@ -102,6 +105,7 @@ class Student_Model {
     required this.isPaid,
     required this.schoolName,
     required this.receivedData,
+    required this.last_subject,
     required this.Academic_division,
     required this.educationalQualification,
     required this.division,
@@ -117,6 +121,7 @@ class Student_Model {
       logOut: json['logOut'],
       isApproved: json['isApproved'],
       isPaid: json['isPaid'],
+      if_pass: json['if_pass'],
       levelar: json['levelar'],
       image: json['Image'],
       soldiers_image_1: json['soldiers_image_1'],
@@ -133,6 +138,7 @@ class Student_Model {
       subjects: (json['subjects'] as List<dynamic>?)
           ?.map((subjectJson) => Subject_Model.fromJson(subjectJson))
           .toList(),
+      last_subject: _parseLastSubject(json['last_subject']),
       bookList: List<String>.from(json['Book_List']),
       studentAddress: json['Student_Address'],
       gender: json['Gender'],
@@ -169,7 +175,20 @@ class Student_Model {
       year_now: json['year_now'],
     );
   }
-
+  static List<dynamic>? _parseLastSubject(dynamic lastSubjectJson) {
+    if (lastSubjectJson is List) {
+      return lastSubjectJson; // If last_subject is a list, return it directly
+    } else if (lastSubjectJson is Map) {
+      // If last_subject is a map, parse it to the appropriate model
+      // Here you would handle different types of models based on your application logic
+      // For example, if it's Subject_Model, you can do something like:
+      return (lastSubjectJson['subjects'] as List<dynamic>?)
+          ?.map((subjectJson) => Subject_Model.fromJson(subjectJson))
+          .toList();
+    }
+    // Handle other cases if necessary
+    return null;
+  }
   // Method to convert a Student object to a JSON map
   Map<String, dynamic> toJson() {
     return {
@@ -178,10 +197,12 @@ class Student_Model {
       'GPA': gpa,
       'subjects': subjects,
       'ID': id,
+      'last_subject': last_subject,
       'isApproved': isApproved,
       'Password': password,
       'Phone': phone,
       'Email': email,
+      'if_pass': if_pass,
       'Military': military,
       'Level': level,
       'Absence': absence,

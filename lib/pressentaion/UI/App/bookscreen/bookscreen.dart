@@ -49,11 +49,11 @@ class _BookScreenState extends State<BookScreen> {
                   child: GridView.builder(
 
 
-                    itemCount: cubit.firstGrade_subjects.length,
+                    itemCount:cubit.student_model!.last_subject!.isNotEmpty ? cubit.student_model?.subjects?.length : cubit.firstGrade_subjects.length,
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: (){
-                          AppConstants.navigateTo(context, PDFViewer_Screen('${cubit.firstGrade_subjects[index].nameSubject}'));
+                          AppConstants.navigateTo(context, PDFViewer_Screen('${cubit.student_model!.last_subject!.isNotEmpty ? cubit.student_model!.subjects![index].nameSubject : cubit.firstGrade_subjects[index].nameSubject}'));
                         },
                         child: defult_container(
                             w: double.infinity,
@@ -61,7 +61,7 @@ class _BookScreenState extends State<BookScreen> {
                             ph: 10.0,
                             child: Center(
                               child: Text(
-                                '${cubit.firstGrade_subjects[index].nameSubject}',
+                                '${cubit.student_model!.last_subject!.isNotEmpty ? cubit.student_model!.subjects![index].nameSubject :cubit.firstGrade_subjects[index].nameSubject}',
                                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ColorManager.white),
                                 textAlign: TextAlign.center,
                                 maxLines: 2,

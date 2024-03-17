@@ -36,6 +36,11 @@ class _Student_PersonalDataState extends State<Student_PersonalData> {
     dateList = [];
     // TODO: implement initState
     super.initState();
+    AppCubit.get(context).reuslts.forEach((element) {
+      if(element.name==AppCubit.get(context).student_model?.name){
+        AppCubit.get(context).calculateGPA(grades:AppCubit.get(context).student_model!.subjects!, result:element.grades! );
+      }
+    });
     var totalRate = 0.0;
     if(AppCubit.get(context).absennse_model!=null) {
       print(
@@ -171,7 +176,7 @@ if(AppCubit.get(context).absennse_model.isNotEmpty)
                             AppConstants.navigateTo(context,GPA_Screen());
                           } ,
                           text: 'GPA',total: 4.0,
-                          value: cubit.student_model!.gpa!,
+                          value: AppCubit.get(context).totalGPA??0.0,
                         ),
                       ),
                          Expanded(

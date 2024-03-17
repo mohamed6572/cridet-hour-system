@@ -59,7 +59,7 @@ class _GPA_ScreenState extends State<GPA_Screen> {
                         ),
                         Expanded(
                           child: ListView.builder(
-                            itemCount: cubit.student_model?.subjects?.length,
+                            itemCount:AppCubit.get(context).reuslts[0].grades!.length,
                             itemBuilder: (context, index) {
                               return Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -72,9 +72,14 @@ class _GPA_ScreenState extends State<GPA_Screen> {
                                   children: [
                                     Row(
                                       children: [
-                                        Text('${cubit.student_model?.subjects?[index].nameSubject}',style: Theme.of(context).textTheme.bodySmall,),
+                                        Text('${AppCubit.get(context).reuslts[0].grades?[index]['subject_name']}',style: Theme.of(context).textTheme.bodySmall,),
                                         Spacer(),
-                                        Text('${cubit.student_model?.subjects?[index].grade} / 100',style: Theme.of(context).textTheme.bodySmall,),
+                                        Row(
+                                          children: [
+                                            Text('${AppCubit.get(context).reuslts[0].grades?[index]['grade']} / 100',style: Theme.of(context).textTheme.bodySmall,),
+
+                                          ],
+                                        ),
                                       ],
                                     ),
 
@@ -93,7 +98,7 @@ class _GPA_ScreenState extends State<GPA_Screen> {
                 ),
                 Divider(),
                 Text(
-                  'Total GPA : ${cubit.student_model?.gpa}',
+                  'Total GPA : ${cubit.student_model?.gpa??cubit.totalGPA}',
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                 )
               ],

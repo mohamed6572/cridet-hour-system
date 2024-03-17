@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../chose_subject/chose_subject.dart';
 import '../bookscreen/bookscreen.dart';
 import '../importantNews/importantNews.dart';
 import '../prev_exams/prev_exams.dart';
@@ -42,11 +43,17 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     AppCubit.get(context).getUserData();
     AppCubit.get(context).Get_Absence(context: context);
+    /// to change the student list
+    //AppCubit.get(context).Get_Subject_FirstGrad(context: context);
+
     _timer = Timer(const Duration(seconds: 6), ()async{
       if (AppCubit.get(context).student_model?.logOut == true) {
         print('logiut : ${AppCubit.get(context).student_model?.logOut}');
         await FirebaseAuth.instance.signOut();
         AppConstants.navigateToAndFinish(context, Login_screen());
+      } if (AppCubit.get(context).student_model?.if_pass == true) {
+        print('passed ');
+        AppConstants.navigateToAndFinish(context, ChoseSubject_Screen());
       }
 
     });

@@ -91,8 +91,24 @@ class GetSubject_firstGrad_LoadingState extends AppState {}
 class GetSubject_firstGrad_SuccsesState extends AppState {}
 class GetSubject_firstGrad_ErrorState extends AppState {}
 
+//get all subject
+
+class GetSubject_All_LoadingState extends AppState {}
+class GetSubject_All_SuccsesState extends AppState {}
+class GetSubject_All_ErrorState extends AppState {}
+//update  subject
+
+class UpdateSubject_LoadingState extends AppState {}
+class UpdateSubject_SuccsesState extends AppState {}
+class UpdateSubject_ErrorState extends AppState {}
+
 class Get_absence_LoadingState extends AppState {}
 class Get_absence_SuccsesState extends AppState {}
 class Get_absence_ErrorState extends AppState {}
 class CalculateGPAState extends AppState {}
 
+//get grades
+
+class getResult_LoadingState extends AppState {}
+class getResult_SuccsesState extends AppState {}
+class getResult_ErrorState extends AppState {}
