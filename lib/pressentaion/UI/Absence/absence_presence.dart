@@ -39,6 +39,7 @@ class _absence_presenceState extends State<absence_presence> {
       print('Average rate of occurrence of "true" values: $averageRate');
       AppCubit.get(context).absennse_model[0].date!.forEach((element) {
         print(element);
+        print('object');
         if (element != 'N/A')
           dateList.add(DataColumn(
               label: Text(

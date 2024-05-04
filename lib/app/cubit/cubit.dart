@@ -285,6 +285,7 @@ void ChangeCard(index){
             emit(RegisterSuccesState());
           }).catchError((e){
             emit(RegisterErrorState());
+
             if (e is FirebaseAuthException) {
               if (e.code == 'email-already-in-use') {
                 // Show a Snackbar when the email is already in use
