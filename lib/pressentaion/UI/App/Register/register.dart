@@ -16,22 +16,18 @@ class Register extends StatefulWidget {
   @override
   State<Register> createState() => _RegisterState();
 }
-
 class _RegisterState extends State<Register> {
   bool isEnrollmentstatus = false;
   List<String> valueEnrollmentStatus = [
     AppStrings.signUp_Candidate,
     AppStrings.signUp_Adapter
   ];
-
   bool isGender = false;
   List<String> valueGender = [AppStrings.signUp_Female, AppStrings.signUp_Male];
-
   var formkey = GlobalKey<FormState>();
   var controlr_FullName = TextEditingController();
   var controlr_SchoolYear = TextEditingController();
   var controlr_major = TextEditingController();
-
   var controlr_Band = TextEditingController();
   var controlr_EducationalQualification = TextEditingController();
   var controlr_Division = TextEditingController();
@@ -868,7 +864,7 @@ class _RegisterState extends State<Register> {
                                                     tripleNumber: controlr_TripleNumberRecruitment.text);
                                               }
                                             },
-                                            child:state is  RegisterLosingState ? Center(child: CircularProgressIndicator(),): Text(
+                                            child:state is  RegisterLosingState || state is  UpdateImagesLoadingState ? Center(child: CircularProgressIndicator(color: Colors.white,),): Text(
                                               AppStrings.signUp_Registration,
                                               style: Theme.of(context)
                                                   .textTheme

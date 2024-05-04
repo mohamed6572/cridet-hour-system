@@ -31,62 +31,78 @@ class _BookScreenState extends State<BookScreen> {
     super.initState();
     AppCubit.get(context).Get_Subject_FirstGrad(context: context);
   }
+
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit,AppState>(builder: (context, state) {
-      var cubit =AppCubit.get(context);
-      return Scaffold(
-        appBar: app_AppBar(context: context,text: 'Books'),
-        body: RefreshIndicator(
-            color: ColorManager.primary,
-            onRefresh: () => _refreshData(context),
-            child:state is GetSubject_firstGrad_LoadingState ? Center(child: CircularProgressIndicator(),) :Column(
-              children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Expanded(
-                  child: GridView.builder(
-
-
-                    itemCount:cubit.student_model!.last_subject!.isNotEmpty ? cubit.student_model?.subjects?.length : cubit.firstGrade_subjects.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: (){
-                          AppConstants.navigateTo(context, PDFViewer_Screen('${cubit.student_model!.last_subject!.isNotEmpty ? cubit.student_model!.subjects![index].nameSubject : cubit.firstGrade_subjects[index].nameSubject}'));
-                        },
-                        child: defult_container(
-                            w: double.infinity,
-                            color:  ColorManager.primary,
-                            ph: 10.0,
-                            child: Center(
-                              child: Text(
-                                '${cubit.student_model!.last_subject!.isNotEmpty ? cubit.student_model!.subjects![index].nameSubject :cubit.firstGrade_subjects[index].nameSubject}',
-                                style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ColorManager.white),
-                                textAlign: TextAlign.center,
-                                maxLines: 2,
-                              ),
+    return BlocConsumer<AppCubit, AppState>(
+      builder: (context, state) {
+        var cubit = AppCubit.get(context);
+        return Scaffold(
+          appBar: app_AppBar(context: context, text: 'Books'),
+          body: RefreshIndicator(
+              color: ColorManager.primary,
+              onRefresh: () => _refreshData(context),
+              child: state is GetSubject_firstGrad_LoadingState
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Column(
+                      children: [
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Expanded(
+                          child: GridView.builder(
+                            itemCount:
+                                cubit.student_model!.last_subject!.isNotEmpty
+                                    ? cubit.student_model?.subjects?.length
+                                    : cubit.firstGrade_subjects.length,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  AppConstants.navigateTo(
+                                      context,
+                                      PDFViewer_Screen(
+                                          '${cubit.student_model!.last_subject!.isNotEmpty ? cubit.student_model!.subjects![index].nameSubject : cubit.firstGrade_subjects[index].nameSubject}'));
+                                },
+                                child: defult_container(
+                                    w: double.infinity,
+                                    color: ColorManager.primary,
+                                    ph: 10.0,
+                                    child: Center(
+                                      child: Text(
+                                        '${cubit.student_model!.last_subject!.isNotEmpty ? cubit.student_model!.subjects![index].nameSubject : cubit.firstGrade_subjects[index].nameSubject}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                                color: ColorManager.white),
+                                        textAlign: TextAlign.center,
+                                        maxLines: 2,
+                                      ),
+                                    ),
+                                    pv: 10.0),
+                              );
+                            },
+                            padding: EdgeInsets.all(AppPadding.p4),
+                            physics: BouncingScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 1.7,
+                              mainAxisSpacing: 15.0,
+                              crossAxisSpacing: 5.0,
                             ),
-                            pv: 10.0),
-                      );
-                    }, padding: EdgeInsets.all(AppPadding.p4),
-                    physics: BouncingScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1.7,
-                      mainAxisSpacing: 15.0,
-                      crossAxisSpacing: 5.0,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-              ],
-            )),
-      );
-    }, listener: (context, state) {
-
-    },);
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    )),
+        );
+      },
+      listener: (context, state) {},
+    );
   }
 }

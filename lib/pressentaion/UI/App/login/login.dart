@@ -5,6 +5,7 @@ import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/constants_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/font_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../resources/custom_widgets/custom_widget.dart';
@@ -30,19 +31,20 @@ class _Login_screenState extends State<Login_screen> {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {
-        if (state is SignInSuccesState ) {
-          AppCubit.get(context).student_model?.isApproved == false ?  AppConstants.navigateTo(context,WaitingScreen()) : AppCubit.get(context).student_model?.isPaid == false ?
-          AppConstants.navigateTo(context,PaymentsDetailsView()):AppConstants.navigateToAndFinish(context,HomeScreen());
-
+        if (state is SignInSuccesState) {
+          AppCubit.get(context).student_model?.isApproved == false
+              ? AppConstants.navigateTo(context, WaitingScreen())
+              : AppCubit.get(context).student_model?.isPaid == false
+                  ? AppConstants.navigateTo(context, PaymentsDetailsView())
+                  : AppConstants.navigateToAndFinish(context, HomeScreen());
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text(
                 'Login Succses Going To Waiting ...',
                 style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white
-                ),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white),
               ),
               backgroundColor: Colors.green,
             ),
@@ -102,6 +104,7 @@ class _Login_screenState extends State<Login_screen> {
                                   onTapOutside: (event) {
                                     FocusScope.of(context).unfocus();
                                   },
+                                  prefix: Icons.email_outlined,
                                   hintText: 'Enter Your Email',
                                   horizontal: 20.0,
                                   virtical: 10.0,
@@ -126,6 +129,7 @@ class _Login_screenState extends State<Login_screen> {
                                   onTapOutside: (event) {
                                     FocusScope.of(context).unfocus();
                                   },
+                                  prefix: Icons.lock_outline_rounded,
                                   hintText: 'Password',
                                   suffix: isObscure
                                       ? Icons.visibility_off
@@ -172,21 +176,27 @@ class _Login_screenState extends State<Login_screen> {
                                 horizontal: 20, vertical: 5),
                             child: TextButton(
                                 onPressed: () {
-
                                   if (formKey.currentState!.validate()) {
                                     cubit.signInWithEmailAndPassword(
-                                        email: mailController.text,
+                                        email: mailController.text.trim(),
                                         context: context,
                                         password: passwordController.text);
                                   }
                                 },
-                                child:state is SignInLosingState ? Center(child: CircularProgressIndicator(color: ColorManager.white,),) : Text(
-                                  'Login',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .copyWith(color: ColorManager.white),
-                                )),
+                                child: state is SignInLosingState
+                                    ? Center(
+                                        child: CircularProgressIndicator(
+                                          color: ColorManager.white,
+                                        ),
+                                      )
+                                    : Text(
+                                        'Login',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .copyWith(
+                                                color: ColorManager.white),
+                                      )),
                           ),
                           Padding(
                             padding: EdgeInsets.all(15),

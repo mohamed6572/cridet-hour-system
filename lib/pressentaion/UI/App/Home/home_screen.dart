@@ -30,22 +30,19 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-
 class _HomeScreenState extends State<HomeScreen> {
   Future<void> _refreshData(BuildContext context) async {
-    AppCubit.get(context).getUserData();
-
+    AppCubit.get(context).getUserData(context:context);
   }
   Timer? _timer;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    AppCubit.get(context).getUserData();
+    AppCubit.get(context).getUserData(context:context);
     AppCubit.get(context).Get_Absence(context: context);
     /// to change the student list
     //AppCubit.get(context).Get_Subject_FirstGrad(context: context);
-
     _timer = Timer(const Duration(seconds: 6), ()async{
       if (AppCubit.get(context).student_model?.logOut == true) {
         print('logiut : ${AppCubit.get(context).student_model?.logOut}');
@@ -55,9 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
         print('passed ');
         AppConstants.navigateToAndFinish(context, ChoseSubject_Screen());
       }
-
     });
-
   }
   @override
   Widget build(BuildContext context) {
@@ -170,33 +165,37 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  // Padding(
-                  //   padding: EdgeInsets.all(10),
-                  //   child: InkWell(
-                  //     onTap:(){
-                  //
-                  //     },
-                  //     child:Row(
-                  //       mainAxisAlignment: MainAxisAlignment.start,
-                  //       children: [
-                  //         Icon(
-                  //           Icons.logout,
-                  //           color: Colors.red,
-                  //           size: 25,
-                  //         ),
-                  //         SizedBox(
-                  //           width: 5,
-                  //         ),
-                  //         Text(
-                  //           "Log out",
-                  //           style: Theme.of(context).textTheme.titleLarge,
-                  //         ),
-                  //
-                  //
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: InkWell(
+                      onTap:(){
+                        setState(() {
+                          FirebaseAuth.instance.signOut().then((value) {
+                            AppConstants.navigateToAndFinish(context, Login_screen());
+                          });
+                        });
+                      },
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.logout,
+                            color: Colors.red,
+                            size: 25,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Log out",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+
+
+                        ],
+                      ),
+                    ),
+                  ),
                   SizedBox(height:200,),
                   Padding(
                     padding:EdgeInsets.all(12),

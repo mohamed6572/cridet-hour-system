@@ -18,6 +18,7 @@ class Student_Model {
   Map<String, dynamic>? absence;
   List<String>? warning;
   List<String>? bookList;
+  List<bool>? falier;
   List<Subject_Model>? subjects;
   List<dynamic>? last_subject;
   String? studentAddress;
@@ -72,6 +73,7 @@ class Student_Model {
     required this.level,
     required this.absence,
     required this.warning,
+    required this.falier,
     required this.bookList,
     required this.studentAddress,
     required this.gender,
@@ -135,6 +137,7 @@ class Student_Model {
       level: json['Level'],
       absence: json['Absence'],
       warning: List<String>.from(json['Warning']),
+      falier: List<bool>.from(json['falier']),
       subjects: (json['subjects'] as List<dynamic>?)
           ?.map((subjectJson) => Subject_Model.fromJson(subjectJson))
           .toList(),
@@ -213,6 +216,7 @@ class Student_Model {
       'Gender': gender,
       'Birth_day_Image': birthDayImage,
       'levelar': levelar,
+      'falier': falier,
       'ID_photo': idPhoto,
       'personal_photo': nomation_c,
       'Nomination_card': nomination_Card,

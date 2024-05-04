@@ -20,9 +20,12 @@ class _WaitingScreenState extends State<WaitingScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {
-if(state is getUserSuccsesState && AppCubit.get(context).student_model!.isApproved ==true)
-
-  AppCubit.get(context).student_model!.isPaid ==true ? AppConstants.navigateToAndFinish(context, HomeScreen()): AppConstants.navigateToAndFinish(context, PaymentsDetailsView());
+        if (state is getUserSuccsesState &&
+            AppCubit.get(context).student_model!.isApproved == true)
+          AppCubit.get(context).student_model!.isPaid == true
+              ? AppConstants.navigateToAndFinish(context, HomeScreen())
+              : AppConstants.navigateToAndFinish(
+                  context, PaymentsDetailsView());
       },
       builder: (context, state) {
         return Scaffold(
@@ -30,12 +33,10 @@ if(state is getUserSuccsesState && AppCubit.get(context).student_model!.isApprov
             backgroundColor: ColorManager.warning,
           ),
           body: Center(
-            child: 
-            Container(
+            child: Container(
               decoration: BoxDecoration(
-                color: ColorManager.white,
-                borderRadius: BorderRadius.circular(15)
-              ),
+                  color: ColorManager.white,
+                  borderRadius: BorderRadius.circular(15)),
               width: double.infinity,
               height: 250,
               margin: EdgeInsets.all(30),
@@ -44,15 +45,25 @@ if(state is getUserSuccsesState && AppCubit.get(context).student_model!.isApprov
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(Icons.warning_amber_outlined,color: ColorManager.warning,),
-                  SizedBox(height: 20,),
-                  Text('Please Wait Until You Get Approve From student affairs .',textAlign: TextAlign.center,),
-                  SizedBox(height: 20,),
-                  ElevatedButton(onPressed: (){
-                    AppCubit.get(context).getUserData();
-                  }, child: Text('Refresh')),
-                  
-                  
+                  Icon(
+                    Icons.warning_amber_outlined,
+                    color: ColorManager.warning,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Please Wait Until You Get Approve From student affairs .',
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        AppCubit.get(context).getUserData();
+                      },
+                      child: Text('Refresh')),
                 ],
               ),
             ),

@@ -11,35 +11,23 @@ class Splash_Screen extends StatefulWidget {
   @override
   State<Splash_Screen> createState() => _Splash_ScreenState();
 }
-
 class _Splash_ScreenState extends State<Splash_Screen> {
   Timer? _timer;
-
   _startDelay() {
     _timer = Timer(const Duration(seconds: 3), _goNext);
   }
   _goNext() {
-
     if(Platform.isAndroid||Platform.isIOS)
       AppConstants.navigateToAndFinish(context, Login_screen());
-
-
   }
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
     _startDelay();
   }
   @override
   Widget build(BuildContext context) {
-
-
-
-
-
     return Scaffold(
       body:
       Center(

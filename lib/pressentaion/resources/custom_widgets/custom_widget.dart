@@ -72,7 +72,7 @@ Widget def_TextFormField(
           horizontal: horizontal == null ? AppMargin.m20 : horizontal,
           vertical: virtical == null ? 0 : virtical),
       child: Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: TextDirection.ltr,
         child: TextFormField(
           controller: controller,
           cursorColor: ColorManager.primary,

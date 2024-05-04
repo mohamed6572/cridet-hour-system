@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:cridet_hour_system/app/cubit/state.dart';
+import 'package:cridet_hour_system/pressentaion/UI/App/login/login.dart';
 import 'package:cridet_hour_system/pressentaion/resources/color_manager.dart';
 import 'package:cridet_hour_system/pressentaion/resources/models/important_news_Image_model/important_news_Image_model.dart';
 import 'package:cridet_hour_system/pressentaion/resources/models/user/user_model.dart';
@@ -188,8 +189,8 @@ void ChangeCard(index){
     try {
       // Create user in Firebase Authentication
       UserCredential result = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+        email: 'z24@gmail.com',
+        password: '123456',
       );
       String uid = result.user!.uid;
       emit(UpdateImagesLoadingState());
@@ -197,6 +198,7 @@ void ChangeCard(index){
       List<Future<String>> uploadTasks = [];
 
       for (int i = 0; i < Images.length; i++) {
+        emit(UpdateImagesLoadingState());
         File image = Images[i];
 
         uploadTasks.add(
@@ -223,16 +225,17 @@ void ChangeCard(index){
           Student_Model userData = Student_Model(
               password: password,
               email: email,logOut: false,
+              falier: [],
               isPaid: false,
               id: uid,
-              soldiers_image_1: downloadUrls[4],
-              soldiers_image_2: downloadUrls[5],
+              soldiers_image_1:  downloadUrls.length > 4 ? downloadUrls[4] : '',
+              soldiers_image_2:  downloadUrls.length > 5 ? downloadUrls[5] : '',
               absence: {},
               approvalDate: approvalDate,
               division: band,
               nomation_c: '',
               major: 'Computer Sience',
-              birthDayImage: downloadUrls[3],
+              birthDayImage:downloadUrls.length > 3 ? downloadUrls[3] : '',
               bookList: [],
               cardIssuingParty: cardIssuingParty,
               dateOfBirth: dateOfBirth,
@@ -247,8 +250,8 @@ void ChangeCard(index){
               gpa: gpa,
               father_Phone: father_Phone,
               idCardNumber: idCardNumber,
-              idPhoto: downloadUrls[2],
-              image: downloadUrls[0],
+              idPhoto: downloadUrls.length > 2 ? downloadUrls[2] : '',
+              image: downloadUrls.isNotEmpty ? downloadUrls[0] : '',
               level: 'First Garde',
               military: military,
               name: name,
@@ -256,7 +259,7 @@ void ChangeCard(index){
               orderStatus: orderStatus,
               partyTransferred: partyTransferred,
               phone: phone,
-              nomination_Card: downloadUrls[1],
+              nomination_Card:  downloadUrls.length > 1 ? downloadUrls[1] : '',
               placeBirth: placeBirth,
               receivedData: receivedData,
               recruitmentArea: recruitmentArea,
@@ -364,7 +367,144 @@ void ChangeCard(index){
       });
 
 
-     // Return null if registration is successful
+     ///
+     //  Student_Model userData = Student_Model(
+     //      password: '123456',
+     //      email: 'z24@gmail.com', name: 'saleh salah ahmed',
+     //      logOut: false,
+     //      falier: [],
+     //      isPaid: false,
+     //      id: uid,
+     //      soldiers_image_1:   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLLFqJv0Csvn2LwjxCDaAM3jke6R14iiTD9KX7wHwzI03V576iQIgT4iKWk1V_j6N-bq0&usqp=CAU',
+     //      soldiers_image_2:  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLLFqJv0Csvn2LwjxCDaAM3jke6R14iiTD9KX7wHwzI03V576iQIgT4iKWk1V_j6N-bq0&usqp=CAU',
+     //      absence: {},
+     //      approvalDate: '15 / 8 / 2023',
+     //      division: 'four',
+     //      nomation_c: '',
+     //      major: 'Computer Sience',
+     //      birthDayImage: 'https://res.cloudinary.com/dufn2o2rw/image/upload/v1714220048/keltefgeuli2kyqty0hz.jpg',
+     //      bookList: [],
+     //      cardIssuingParty: 'kafer El-Shik',
+     //      dateOfBirth: '30 / 9 / 2002',
+     //      degreeTotal: '395',
+     //      Academic_division: 'kafer El-Shik',
+     //      doneIn: '15 / 6 /2023',
+     //      educationalQualification: 'Computer Science',
+     //      enroll_Status: true,
+     //      fatherJob: 'teacher',
+     //      fatherName: 'hany abdelraof',
+     //      gender: 'Male',
+     //      gpa: 0.0,
+     //      father_Phone: '01092394551',
+     //      idCardNumber: '19220039554',
+     //      idPhoto:  'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Egyption_ID.jpg/220px-Egyption_ID.jpg',
+     //      image:  'https://static.vecteezy.com/system/resources/thumbnails/008/442/086/small/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg',
+     //      level: 'First Garde',
+     //      military: false,
+     //
+     //      note: 'N/A',
+     //      orderStatus: 'done',
+     //      partyTransferred: 'kafer El-Shik',
+     //      phone: '01086759224',
+     //      nomination_Card:  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyw1WGELunx6pjck76-y5LJuscg11hWdUuE2ORdPRd0q8xGX527uBrCW21MJUpK7AhGAXh4thUe_eUpOn8E5q8Vv1aLdjDkFTgK-ICHqkt1318BJYogA0gYcpY_tqbpUd6Eq4W54oxB3V0/s640-rw/4.png',
+     //      placeBirth: 'kafer El-Shik',
+     //      receivedData: '10 / 8 / 2023',
+     //      recruitmentArea: 'kafer El-Shik',
+     //      schoolName: 'kafer El-Shik school',
+     //      year_now: '2024',
+     //      isApproved: false,
+     //      sittingNumber: '312468',
+     //      studentAddress: 'kafer El-Shik',
+     //      studentPhone: '01120312313',
+     //      transferStatus: 'good',
+     //      transferType: 'done',
+     //      tripleNumber: '312',
+     //      warning: [], levelar: 'الفرقة الاولى',last_subject: [], subjects: [], if_pass: false);
+     //  // Get the UID of the newly registered user
+     //
+     //  // Save additional user data to Firestore
+     //  await _firestore
+     //      .collection('students')
+     //      .doc(uid)
+     //      .set(userData.toJson())
+     //      .then((value) {
+     //    StudentImages =[];
+     //    emit(RegisterSuccesState());
+     //  }).catchError((e){
+     //    emit(RegisterErrorState());
+     //    if (e is FirebaseAuthException) {
+     //      if (e.code == 'email-already-in-use') {
+     //        // Show a Snackbar when the email is already in use
+     //
+     //        ScaffoldMessenger.of(context).showSnackBar(
+     //          SnackBar(
+     //            backgroundColor: ColorManager.error,
+     //            content: Text(
+     //                textAlign: TextAlign.center,
+     //                'Email Is Aleardy Exist',
+     //                style: Theme.of(context)
+     //                    .textTheme
+     //                    .titleSmall!
+     //                    .copyWith(color: Colors.white)),
+     //            duration: Duration(seconds: 3), // Adjust the duration as needed
+     //          ),
+     //        );
+     //      } else if (e.code == 'too-many-requests') {
+     //        // Show a Snackbar when the password is incorrect
+     //
+     //        ScaffoldMessenger.of(context).showSnackBar(
+     //          SnackBar(
+     //            backgroundColor: ColorManager.error,
+     //            content: Text(
+     //                textAlign: TextAlign.center,
+     //                'To Many Request ',
+     //                style: Theme.of(context)
+     //                    .textTheme
+     //                    .titleSmall!
+     //                    .copyWith(color: Colors.white)),
+     //            duration: Duration(seconds: 3), // Adjust the duration as needed
+     //          ),
+     //        );
+     //      } else if (e.code == 'weak-password') {
+     //        // Show a Snackbar when the password is too weak
+     //        ScaffoldMessenger.of(context).showSnackBar(
+     //          SnackBar(
+     //            backgroundColor: ColorManager.error,
+     //            content: Text(
+     //                textAlign: TextAlign.center,
+     //                'Weak Password',
+     //                style: Theme.of(context)
+     //                    .textTheme
+     //                    .titleSmall!
+     //                    .copyWith(color: Colors.white)),
+     //            duration: Duration(seconds: 3), // Adjust the duration as needed
+     //          ),
+     //        );
+     //      } else {
+     //        // Handle other FirebaseAuth errors
+     //        print('FirebaseAuth error during user sign-up: ${e.message}');
+     //      }
+     //    } else if (e is FirebaseException && e.code == 'network-request-failed') {
+     //      // Show a Snackbar for network/connection error
+     //      ScaffoldMessenger.of(context).showSnackBar(
+     //        SnackBar(
+     //          backgroundColor: ColorManager.error,
+     //          content: Text(
+     //              textAlign: TextAlign.center,
+     //              'Check Your Conection',
+     //              style: Theme.of(context)
+     //                  .textTheme
+     //                  .titleSmall!
+     //                  .copyWith(color: Colors.white)),
+     //          duration: Duration(seconds: 3), // Adjust the duration as needed
+     //        ),
+     //      );
+     //    } else {
+     //      // Handle other errors
+     //      print('Error during user sign-up: $e');
+     //    }
+     //  });
+      ///
     } on FirebaseAuthException catch (e) {
       //   // Return an error message if registration fails
       emit(RegisterErrorState());
@@ -454,13 +594,13 @@ void ChangeCard(index){
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {
         emit(SignInSuccesState());
-        getUserData();
+        getUserData(context:context);
         _firestore.collection('students').doc(value?.user?.uid).update(
             {
               'logOut': false,
             }
         ).then((value) {
-          getUserData();
+          getUserData(context:context);
         }).catchError((e){
           print(e.toString());
           emit(SignInErrorState());
@@ -563,7 +703,7 @@ void ChangeCard(index){
   List<dynamic> Warning_List = [];
   Student_Model? student_model;
   // Function to get user data from Firestore
-  void getUserData() async {
+  void getUserData({BuildContext? context}) async {
     Warning_List = [];
     emit(getUserLoadingState());
     print('get data');
@@ -586,6 +726,8 @@ void ChangeCard(index){
           // If the document exists, create a Student object from the data
         } else {
           emit(getUserErrorState());
+          FirebaseAuth.instance.currentUser?.delete();
+          AppConstants.navigateToAndFinish(context, Login_screen());
           print('doc not exist');
           return null; // Return null if the document does not exist
         }

@@ -36,8 +36,18 @@ class _ChoseSubject_ScreenState extends State<ChoseSubject_Screen> {
     });
   }
 
+  String num_subject(double x) {
+    if (x >= 3) return '7';
+    if (2 <= x && x < 3) return '6';
+    if (1 < x && x < 2) return '5';
+    if (x < 1) return '4';
+    return '';
+  }
+
   @override
   Widget build(BuildContext context) {
+    var x = AppCubit.get(context).student_model!.gpa!;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -49,7 +59,7 @@ class _ChoseSubject_ScreenState extends State<ChoseSubject_Screen> {
       ),
       body: BlocConsumer<AppCubit, AppState>(
         listener: (context, state) {
-          if(state is UpdateSubject_SuccsesState){
+          if (state is UpdateSubject_SuccsesState) {
             AppConstants.navigateToAndFinish(context, PaymentsDetailsView());
           }
         },
@@ -82,7 +92,7 @@ class _ChoseSubject_ScreenState extends State<ChoseSubject_Screen> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-                    child: Text('MAX :  ${allChosen.length}'),
+                    child: Text('MAX :  ${num_subject(x)}'),
                   ),
                 ],
               ),
@@ -99,7 +109,18 @@ class _ChoseSubject_ScreenState extends State<ChoseSubject_Screen> {
                           if (isChosen) {
                             chosed.remove(subject);
                           } else {
-                            chosed.add(subject);
+                            if (chosed.length < int.parse(num_subject(x))) {
+                              chosed.add(subject);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  duration: Duration(milliseconds: 400),
+                                  backgroundColor: Colors.red,
+                                  content: Text(
+                                      "You cannot choose more than ${num_subject(x)} subjects."),
+                                ),
+                              );
+                            }
                           }
                         });
                       },
@@ -141,14 +162,33 @@ class _ChoseSubject_ScreenState extends State<ChoseSubject_Screen> {
                 color: Colors.white,
                 child: TextButton(
                   onPressed: () {
-                 if(chosed.isNotEmpty)  {
-                      cubit.Update_Subjects(
-                          uid: cubit.student_model?.id,
-                          /// to change the student list
-                         // sub: cubit.firstGrade_subjects
-                          sub: chosed
+                    if (chosed.isNotEmpty) {
+                      if (chosed.length > 4) {
+                        cubit.Update_Subjects(
+                            uid: cubit.student_model?.id,
+
+                            /// to change the student list
+                            // sub: cubit.firstGrade_subjects
+                            sub: chosed
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            duration: Duration(milliseconds: 400),
+                            backgroundColor: Colors.red,
+                            content: Text("Min Subjects 5 ."),
+                          ),
+                        );
+                      }
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          duration: Duration(milliseconds: 400),
+                          backgroundColor: Colors.red,
+                          content: Text("Min Subjects 5 ."),
+                        ),
                       );
-                   }
+                    }
                   },
                   child: Text(
                     'Save',

@@ -11,11 +11,7 @@ void main() {
   BlocOverrides.runZoned(
         () async {
       WidgetsFlutterBinding.ensureInitialized();
-
-
-
        await Firebase.initializeApp();
-
       runApp(MyApp());
     },
     blocObserver: MyBlocObserver(),
